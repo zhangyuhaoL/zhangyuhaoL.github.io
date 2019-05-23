@@ -265,6 +265,23 @@
         
         
           
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-archives">
 
     
@@ -372,12 +389,24 @@
                 
               
 
-              <time title="创建时间：2019-05-22 00:00:00 / 修改时间：17:21:23" itemprop="dateCreated datePublished" datetime="2019-05-22T00:00:00+08:00">2019-05-22</time>
+              <time title="创建时间：2019-05-22 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-22T00:00:00+08:00">2019-05-22</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-23 11:33:12" itemprop="dateModified" datetime="2019-05-23T11:33:12+08:00">2019-05-23</time>
               
             
           </span>
@@ -430,7 +459,31 @@
 
       
         
-          <h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><p>这个是描述</p>
+          <h2 id="undefined-与-null-的区别"><a href="#undefined-与-null-的区别" class="headerlink" title="undefined 与 null 的区别"></a>undefined 与 null 的区别</h2><ul>
+<li>null 表示”没有对象”，即该处不应该有值。典型用法是：<ol>
+<li>作为函数的参数，表示该函数的参数不是对象。</li>
+<li>作为对象原型链的终点。</li>
+</ol>
+</li>
+<li>undefined 表示”缺少值”，就是此处应该有一个值，但是还没有定义。典型用法是：<ol>
+<li>变量被声明了，但没有赋值时，就等于 undefined。</li>
+<li>调用函数时，应该提供的参数没有提供，该参数等于 undefined。</li>
+<li>对象没有赋值的属性，该属性的值为 undefined。</li>
+<li>函数没有返回值时，默认返回 undefined。<blockquote>
+<p>高级程序中提到：对未初始化和未声明的变量执行 typeof 操作返回 undefined。对 null 执行 typeof 操作返回 object。</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="事件委托（事件代理）"><a href="#事件委托（事件代理）" class="headerlink" title="事件委托（事件代理）"></a>事件委托（事件代理）</h2><ul>
+<li><p>事件委托就是事件目标自身不处理事件，而是把处理任务委托给其父元素或者祖先元素，甚至根元素（document）。</p>
+<blockquote>
+<p>高级程序：事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。</p>
+</blockquote>
+<blockquote>
+<p>原理：利用冒泡；</p>
+</blockquote>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -442,7 +495,7 @@
           <!--/noindex-->
         
       
-    </div>
+    </li></ul></div>
 
     
 
