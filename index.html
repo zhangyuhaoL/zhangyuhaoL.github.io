@@ -406,7 +406,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-19 15:17:06" itemprop="dateModified" datetime="2019-06-19T15:17:06+08:00">2019-06-19</time>
+                <time title="修改时间：2019-06-20 11:05:31" itemprop="dateModified" datetime="2019-06-20T11:05:31+08:00">2019-06-20</time>
               
             
           </span>
@@ -459,26 +459,203 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>参考资料：<a href="http://es6.ruanyifeng.com" target="_blank" rel="noopener">http://es6.ruanyifeng.com</a></p>
 </blockquote>
 <h3 id="let-和-const-命令"><a href="#let-和-const-命令" class="headerlink" title="let 和 const 命令"></a>let 和 const 命令</h3><h4 id="let-命令"><a href="#let-命令" class="headerlink" title="let 命令"></a>let 命令</h4><p>ES6 新增的 let 命令，用于声明变量。用法类似 var，但所声明的变量，只在 let 命令所在的代码块有效。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  a[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">a[<span class="number">6</span>](); <span class="comment">// 10</span></span><br><span class="line"><span class="comment">//变量i用var声明，在全局范围都有效，所以全局只有一个变量i</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  a[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">a[<span class="number">6</span>](); <span class="comment">// 6</span></span><br><span class="line"><span class="comment">//当前的i只在本轮循环有效，所以每一次循环的i其实都是一个新的变量</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//for循环还有一个特别之处，就是设置循环变量的那部分是一个父作用域，而循环体内部是一个单独的子作用域。</span></span><br></pre></td></tr></table></figure>
-<h5 id="不存在变量提升"><a href="#不存在变量提升" class="headerlink" title="不存在变量提升"></a>不存在变量提升</h5><p>var 命令会发生“变量提升”现象，即变量可以在声明之前使用，值为 undefined。let 命令改变了语法行为，它所声明的变量一定要在声明后使用，否则报错。</p>
-<h5 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h5><p>ES6 明确规定，如果区块中存在 let 和 const 命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmp = <span class="number">123</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  tmp = <span class="string">'abc'</span>; <span class="comment">// ReferenceError</span></span><br><span class="line">  <span class="keyword">let</span> tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//“暂时性死区”也意味着typeof不再是一个百分之百安全的操作。</span></span><br><span class="line"><span class="keyword">typeof</span> x; <span class="comment">// ReferenceError</span></span><br><span class="line"><span class="keyword">let</span> x;</span><br><span class="line"></span><br><span class="line"><span class="comment">//作为比较，如果一个变量根本没有被声明，使用typeof反而不会报错。</span></span><br><span class="line"><span class="keyword">typeof</span> undeclared_variable; <span class="comment">// "undefined"</span></span><br></pre></td></tr></table></figure>
-<h5 id="不允许重复声明"><a href="#不允许重复声明" class="headerlink" title="不允许重复声明"></a>不允许重复声明</h5><p>let 不允许在相同作用域内，重复声明同一个变量。</p>
-<h4 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h4><p>ES5 只有全局作用域和函数作用域，没有块级作用域，这带来很多不合理的场景。<br>第一种场景，内层变量可能会覆盖外层变量。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmp = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(tmp);</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> tmp = <span class="string">'hello world'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f(); <span class="comment">// undefined</span></span><br><span class="line"><span class="comment">//原因在于变量提升，导致内层的tmp变量覆盖了外层的tmp变量。</span></span><br></pre></td></tr></table></figure>
-<p>第二种场景，用来计数的循环变量泄露为全局变量。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">'hello'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(s[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(i); <span class="comment">// 5</span></span><br><span class="line"><span class="comment">//上面代码中，变量i只用来控制循环，但是循环结束后，它并没有消失，泄露成了全局变量。</span></span><br></pre></td></tr></table></figure>
-<p><strong>ES6 的块级作用域</strong><br>let 实际上为 JavaScript 新增了块级作用域。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> n = <span class="number">5</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> n = <span class="number">10</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(n); <span class="comment">//5</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 外层作用域无法读取内层作用域中的内部变量</span></span><br></pre></td></tr></table></figure>
-<p>块级作用域的出现，实际上使得获得广泛应用的立即执行函数表达式（IIFE）不再必要了。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// IIFE 写法</span></span><br><span class="line"><span class="comment">// 避免污染全局变量</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tmp = ...;</span><br><span class="line">  ...</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 块级作用域写法</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> tmp = ...;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/06/18/ES6笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhangyuhaoL.github.io/2019/06/13/如何阅读一本书/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangyuhao">
+      <meta itemprop="description" content="JavaScript,React,Vue">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shmily-ll">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/13/如何阅读一本书/" class="post-title-link" itemprop="url">如何阅读一本书（一）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-13 00:00:00 / 修改时间：17:07:37" itemprop="dateCreated datePublished" datetime="2019-06-13T00:00:00+08:00">2019-06-13</time>
+            
+
+            
+              
+
+              
+            
+          </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/阅读/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><em>正所谓磨刀不误砍柴工，学好如何阅读一本书，才能更好的阅读其他的书籍。所以，我打算最近利用闲暇的时间读一读这本著名的书籍，并留下一些什么。</em></p>
+<h1 id="第一篇-阅读的层次"><a href="#第一篇-阅读的层次" class="headerlink" title="第一篇 阅读的层次"></a><div align="center">第一篇 阅读的层次</div></h1><h2 id="第一章-阅读的活力与艺术"><a href="#第一章-阅读的活力与艺术" class="headerlink" title="第一章 阅读的活力与艺术"></a>第一章 阅读的活力与艺术</h2><p>&emsp;&emsp;现在的社会，收音机、电视等东西，取代了以往由书本所提供的部分功能。这些东西都给我们带来了很大的便利，为我们节省了不少时间。但在这中间还是有一个严肃的议题：到底这些新时代的传播媒体是否真能增进我们对自己世界的了解？（现代的媒体正以压倒性的泛滥资讯阻碍了我们的理解力）</p>
+<p><strong>主动阅读</strong></p>
+<ol>
+<li>阅读可以是一件多少主动的事；</li>
+<li>阅读越主动，效果越好；</li>
+</ol>
+<p><strong>阅读的目标</strong></p>
+<ol>
+<li>获取资讯；</li>
+<li>增进理解；</li>
+</ol>
+<blockquote>
+<p>粗略地为所谓的阅读艺术下个定义：这是一个凭借着头脑运作，除了玩味读物中的一些字句之外，不假任何外助，以一己之力来提升自我的过程。你的头脑会从粗浅的了解推进到深入的理解。而会产生这种结果的运作技巧，就是由许多不同活动所组合成的阅读的艺术。</p>
+</blockquote>
+<p>&emsp;&emsp;凭着自己的心智活动努力阅读，从只有粗浅的了解推进到深入的体会，就像是自我的破茧而出。第一种意义是我们在阅读报纸、杂志，或其他东西时，凭我们的阅读技巧与聪明才智，一下子就融会贯通了。这样的读物能增加我们的资讯，却不能增进我们的理解力。第二种意义是一个人试着读某样他一开始并不怎么了解的东西。从里面学习到东西。这里的“学习”指的是理解更多的事情，而不是记住更多的资讯——和你已经知道的资讯在同一水平的资讯。</p>
+<p><strong>事实上，本书最主要的目的就是，我们需要懂得如何让书本来教导我们。</strong></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/06/13/如何阅读一本书/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -664,189 +841,6 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/2019/06/13/如何阅读一本书2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangyuhaoL.github.io/2019/06/13/如何阅读一本书/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhangyuhao">
-      <meta itemprop="description" content="JavaScript,React,Vue">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shmily-ll">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/13/如何阅读一本书/" class="post-title-link" itemprop="url">如何阅读一本书（一）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-13 00:00:00 / 修改时间：17:07:37" itemprop="dateCreated datePublished" datetime="2019-06-13T00:00:00+08:00">2019-06-13</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/阅读/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><em>正所谓磨刀不误砍柴工，学好如何阅读一本书，才能更好的阅读其他的书籍。所以，我打算最近利用闲暇的时间读一读这本著名的书籍，并留下一些什么。</em></p>
-<h1 id="第一篇-阅读的层次"><a href="#第一篇-阅读的层次" class="headerlink" title="第一篇 阅读的层次"></a><div align="center">第一篇 阅读的层次</div></h1><h2 id="第一章-阅读的活力与艺术"><a href="#第一章-阅读的活力与艺术" class="headerlink" title="第一章 阅读的活力与艺术"></a>第一章 阅读的活力与艺术</h2><p>&emsp;&emsp;现在的社会，收音机、电视等东西，取代了以往由书本所提供的部分功能。这些东西都给我们带来了很大的便利，为我们节省了不少时间。但在这中间还是有一个严肃的议题：到底这些新时代的传播媒体是否真能增进我们对自己世界的了解？（现代的媒体正以压倒性的泛滥资讯阻碍了我们的理解力）</p>
-<p><strong>主动阅读</strong></p>
-<ol>
-<li>阅读可以是一件多少主动的事；</li>
-<li>阅读越主动，效果越好；</li>
-</ol>
-<p><strong>阅读的目标</strong></p>
-<ol>
-<li>获取资讯；</li>
-<li>增进理解；</li>
-</ol>
-<blockquote>
-<p>粗略地为所谓的阅读艺术下个定义：这是一个凭借着头脑运作，除了玩味读物中的一些字句之外，不假任何外助，以一己之力来提升自我的过程。你的头脑会从粗浅的了解推进到深入的理解。而会产生这种结果的运作技巧，就是由许多不同活动所组合成的阅读的艺术。</p>
-</blockquote>
-<p>&emsp;&emsp;凭着自己的心智活动努力阅读，从只有粗浅的了解推进到深入的体会，就像是自我的破茧而出。第一种意义是我们在阅读报纸、杂志，或其他东西时，凭我们的阅读技巧与聪明才智，一下子就融会贯通了。这样的读物能增加我们的资讯，却不能增进我们的理解力。第二种意义是一个人试着读某样他一开始并不怎么了解的东西。从里面学习到东西。这里的“学习”指的是理解更多的事情，而不是记住更多的资讯——和你已经知道的资讯在同一水平的资讯。</p>
-<p><strong>事实上，本书最主要的目的就是，我们需要懂得如何让书本来教导我们。</strong></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/06/13/如何阅读一本书/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
