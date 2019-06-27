@@ -344,6 +344,206 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhangyuhaoL.github.io/2019/06/27/ES6笔记2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangyuhao">
+      <meta itemprop="description" content="JavaScript,React,Vue">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shmily-ll">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/27/ES6笔记2/" class="post-title-link" itemprop="url">ES6笔记（二）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-27 00:00:00 / 修改时间：18:09:46" itemprop="dateCreated datePublished" datetime="2019-06-27T00:00:00+08:00">2019-06-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>参考资料：<a href="http://es6.ruanyifeng.com" target="_blank" rel="noopener">http://es6.ruanyifeng.com</a></p>
+</blockquote>
+<h2 id="数组的扩展"><a href="#数组的扩展" class="headerlink" title="数组的扩展"></a>数组的扩展</h2><h4 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h4><p>扩展运算符（spread）是三个点（…）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(...[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="comment">// 1 2 3</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>, ...[<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], <span class="number">5</span>)</span><br><span class="line"><span class="comment">// 1 2 3 4 5</span></span><br><span class="line"></span><br><span class="line">[...document.querySelectorAll(<span class="string">'div'</span>)]</span><br><span class="line"><span class="comment">// [&lt;div&gt;, &lt;div&gt;, &lt;div&gt;]</span></span><br></pre></td></tr></table></figure>
+<p><strong>替代函数的 apply 方法</strong><br>由于扩展运算符可以展开数组，所以不再需要 apply 方法，将数组转为函数的参数了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5 的写法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x, y, z</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> args = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">f.apply(<span class="literal">null</span>, args);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6的写法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x, y, z</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> args = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">f(...args);</span><br><span class="line"></span><br><span class="line"><span class="comment">//应用Math.max方法，简化求出一个数组最大元素的写法。</span></span><br><span class="line"><span class="comment">// ES5 的写法</span></span><br><span class="line"><span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, [<span class="number">14</span>, <span class="number">3</span>, <span class="number">77</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 的写法</span></span><br><span class="line"><span class="built_in">Math</span>.max(...[<span class="number">14</span>, <span class="number">3</span>, <span class="number">77</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="built_in">Math</span>.max(<span class="number">14</span>, <span class="number">3</span>, <span class="number">77</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过push函数，将一个数组添加到另一个数组的尾部</span></span><br><span class="line"><span class="comment">// ES5的 写法</span></span><br><span class="line"><span class="keyword">var</span> arr1 = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="built_in">Array</span>.prototype.push.apply(arr1, arr2);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 的写法</span></span><br><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">arr1.push(...arr2);</span><br></pre></td></tr></table></figure>
+<p><strong>扩展运算符的应用</strong></p>
+<ul>
+<li><p>复制数组<br>数组是复合的数据类型，直接复制的话，只是复制了指向底层数据结构的指针，而不是克隆一个全新的数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ES5 方法：</span></span><br><span class="line"><span class="keyword">const</span> a1 = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> a2 = a1.concat();</span><br><span class="line"></span><br><span class="line">a2[<span class="number">0</span>] = <span class="number">2</span>;</span><br><span class="line">a1; <span class="comment">// [1, 2]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6方法：</span></span><br><span class="line"><span class="keyword">const</span> a1 = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="comment">// 写法一</span></span><br><span class="line"><span class="keyword">const</span> a2 = [...a1];</span><br><span class="line"><span class="comment">// 写法二</span></span><br><span class="line"><span class="keyword">const</span> [...a2] = a1;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>合并数组<br>扩展运算符提供了数组合并的新写法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>];</span><br><span class="line"><span class="keyword">const</span> arr2 = [<span class="string">'c'</span>];</span><br><span class="line"><span class="keyword">const</span> arr3 = [<span class="string">'d'</span>, <span class="string">'e'</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES5 的合并数组</span></span><br><span class="line">arr1.concat(arr2, arr3);</span><br><span class="line"><span class="comment">// [ 'a', 'b', 'c', 'd', 'e' ]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 的合并数组</span></span><br><span class="line">[...arr1, ...arr2, ...arr3];</span><br><span class="line"><span class="comment">// [ 'a', 'b', 'c', 'd', 'e' ]</span></span><br></pre></td></tr></table></figure>
+<p>不过，这两种方法都是浅拷贝，使用的时候需要注意。</p>
+</li>
+<li><p>与解构赋值结合<br>用于生成数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line">a = list[<span class="number">0</span>], rest = list.slice(<span class="number">1</span>)</span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line">[a, ...rest] = list</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> [first, ...rest] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="comment">//其他例子</span></span><br><span class="line">first <span class="comment">// 1</span></span><br><span class="line">rest  <span class="comment">// [2, 3, 4, 5]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> [first, ...rest] = [];</span><br><span class="line">first <span class="comment">// undefined</span></span><br><span class="line">rest  <span class="comment">// []</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> [first, ...rest] = [<span class="string">"foo"</span>];</span><br><span class="line">first  <span class="comment">// "foo"</span></span><br><span class="line">rest   <span class="comment">// []</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//如果将扩展运算符用于数组赋值，只能放在参数的最后一位，否则会报错。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字符串<br>扩展运算符还可以将字符串转为真正的数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[...<span class="string">'hello'</span>];</span><br><span class="line"><span class="comment">// [ "h", "e", "l", "l", "o" ]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实现了 Iterator 接口的对象<br>任何定义了遍历器（Iterator）接口的对象（参阅 Iterator 一章），都可以用扩展运算符转为真正的数组。</p>
+</li>
+<li><p>Map 和 Set 结构，Generator 函数</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Map 结构</span></span><br><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="number">1</span>, <span class="string">'one'</span>], [<span class="number">2</span>, <span class="string">'two'</span>], [<span class="number">3</span>, <span class="string">'three'</span>]]);</span><br><span class="line"><span class="keyword">let</span> arr = [...map.keys()]; <span class="comment">// [1, 2, 3]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Generator 函数运行后，返回一个遍历器对象，因此也可以使用扩展运算符。</span></span><br><span class="line"><span class="keyword">const</span> go = <span class="function"><span class="keyword">function</span>*(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">[...go()]; <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<h4 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from()"></a>Array.from()</h4><p>Array.from 方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括 ES6 新增的数据结构 Set 和 Map）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下面是一个类似数组的对象，Array.from将它转为真正的数组。</span></span><br><span class="line"><span class="keyword">let</span> arrayLike = &#123;</span><br><span class="line">  <span class="string">'0'</span>: <span class="string">'a'</span>,</span><br><span class="line">  <span class="string">'1'</span>: <span class="string">'b'</span>,</span><br><span class="line">  <span class="string">'2'</span>: <span class="string">'c'</span>,</span><br><span class="line">  length: <span class="number">3</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES5的写法</span></span><br><span class="line"><span class="keyword">var</span> arr1 = [].slice.call(arrayLike); <span class="comment">// ['a', 'b', 'c']</span></span><br><span class="line"><span class="comment">// ES6的写法</span></span><br><span class="line"><span class="keyword">let</span> arr2 = <span class="built_in">Array</span>.from(arrayLike); <span class="comment">// ['a', 'b', 'c']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//实际应用中，常见的类似数组的对象是 DOM 操作返回的 NodeList 集合，以及函数内部的arguments对象。</span></span><br><span class="line"><span class="comment">// NodeList对象</span></span><br><span class="line"><span class="keyword">let</span> ps = <span class="built_in">document</span>.querySelectorAll(<span class="string">'p'</span>);</span><br><span class="line"><span class="built_in">Array</span>.from(ps).filter(<span class="function"><span class="params">p</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> p.textContent.length &gt; <span class="number">100</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// arguments对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> args = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>);</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//只要是部署了 Iterator 接口的数据结构，Array.from都能将其转为数组。</span></span><br><span class="line"><span class="built_in">Array</span>.from(<span class="string">'hello'</span>);</span><br><span class="line"><span class="comment">// ['h', 'e', 'l', 'l', 'o']</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> namesSet = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="string">'a'</span>, <span class="string">'b'</span>]);</span><br><span class="line"><span class="built_in">Array</span>.from(namesSet); <span class="comment">// ['a', 'b']</span></span><br></pre></td></tr></table></figure>
+<p>Array.from 还可以接受第二个参数，作用类似于数组的 map 方法，用来对每个元素进行处理，将处理后的值放入返回的数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.from(arrayLike, x =&gt; x * x);</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="built_in">Array</span>.from(arrayLike).map(<span class="function"><span class="params">x</span> =&gt;</span> x * x);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.from([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], x =&gt; x * x);</span><br><span class="line"><span class="comment">// [1, 4, 9]</span></span><br></pre></td></tr></table></figure>
+<h4 id="Array-of"><a href="#Array-of" class="headerlink" title="Array.of()"></a>Array.of()</h4><p>Array.of 方法用于将一组值，转换为数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.of(<span class="number">3</span>, <span class="number">11</span>, <span class="number">8</span>); <span class="comment">// [3,11,8]</span></span><br><span class="line"><span class="built_in">Array</span>.of(<span class="number">3</span>); <span class="comment">// [3]</span></span><br><span class="line"><span class="built_in">Array</span>.of(<span class="number">3</span>).length; <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>这个方法的主要目的，是弥补数组构造函数 Array()的不足。因为参数个数的不同，会导致 Array()的行为有差异。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>(); <span class="comment">// []</span></span><br><span class="line"><span class="built_in">Array</span>(<span class="number">3</span>); <span class="comment">// [, , ,]</span></span><br><span class="line"><span class="built_in">Array</span>(<span class="number">3</span>, <span class="number">11</span>, <span class="number">8</span>); <span class="comment">// [3, 11, 8]</span></span><br></pre></td></tr></table></figure>
+<p>Array.of 基本上可以用来替代 Array()或 new Array()，并且不存在由于参数不同而导致的重载。它的行为非常统一。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.of(); <span class="comment">// []</span></span><br><span class="line"><span class="built_in">Array</span>.of(<span class="literal">undefined</span>); <span class="comment">// [undefined]</span></span><br><span class="line"><span class="built_in">Array</span>.of(<span class="number">1</span>); <span class="comment">// [1]</span></span><br><span class="line"><span class="built_in">Array</span>.of(<span class="number">1</span>, <span class="number">2</span>); <span class="comment">// [1, 2]</span></span><br></pre></td></tr></table></figure>
+<p>Array.of 方法可以用下面的代码模拟实现。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ArrayOf</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [].slice.call(<span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="数组实例的-copyWithin"><a href="#数组实例的-copyWithin" class="headerlink" title="数组实例的 copyWithin()"></a>数组实例的 copyWithin()</h4>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://zhangyuhaoL.github.io/2019/06/18/ES6笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -406,7 +606,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-26 18:00:30" itemprop="dateModified" datetime="2019-06-26T18:00:30+08:00">2019-06-26</time>
+                <time title="修改时间：2019-06-27 16:20:27" itemprop="dateModified" datetime="2019-06-27T16:20:27+08:00">2019-06-27</time>
               
             
           </span>
@@ -1659,7 +1859,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
