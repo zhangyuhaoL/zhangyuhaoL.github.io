@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="undefined 与 null 的区别 null 表示”没有对象”，即该处不应该有值。典型用法是： 作为函数的参数，表示该函数的参数不是对象。 作为对象原型链的终点。   undefined 表示”缺少值”，就是此处应该有一个值，但是还没有定义。典型用法是： 变量被声明了，但没有赋值时，就等于 undefined。 调用函数时，应该提供的参数没有提供，该参数等于 undefined。 对象没有赋">
+  <meta name="description" content="参考资料：http://es6.ruanyifeng.com  Symbol概述ES5 的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了一个他人提供的对象，但又想为这个对象添加新的方法（mixin 模式），新方法的名字就有可能与现有方法产生冲突。如果有一种机制，保证每个属性的名字都是独一无二的就好了，这样就从根本上防止属性名的冲突。这就是 ES6 引入 Symbol 的原因。 ES">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="平时笔记">
-<meta property="og:url" content="https://zhangyuhaoL.github.io/2019/05/22/平时笔记/index.html">
+<meta property="og:title" content="ES6笔记（三）">
+<meta property="og:url" content="https://zhangyuhaoL.github.io/2019/07/02/ES6笔记3/index.html">
 <meta property="og:site_name" content="Shmily-ll">
-<meta property="og:description" content="undefined 与 null 的区别 null 表示”没有对象”，即该处不应该有值。典型用法是： 作为函数的参数，表示该函数的参数不是对象。 作为对象原型链的终点。   undefined 表示”缺少值”，就是此处应该有一个值，但是还没有定义。典型用法是： 变量被声明了，但没有赋值时，就等于 undefined。 调用函数时，应该提供的参数没有提供，该参数等于 undefined。 对象没有赋">
+<meta property="og:description" content="参考资料：http://es6.ruanyifeng.com  Symbol概述ES5 的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了一个他人提供的对象，但又想为这个对象添加新的方法（mixin 模式），新方法的名字就有可能与现有方法产生冲突。如果有一种机制，保证每个属性的名字都是独一无二的就好了，这样就从根本上防止属性名的冲突。这就是 ES6 引入 Symbol 的原因。 ES">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-23T06:41:30.188Z">
+<meta property="og:updated_time" content="2019-07-02T10:04:37.707Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="平时笔记">
-<meta name="twitter:description" content="undefined 与 null 的区别 null 表示”没有对象”，即该处不应该有值。典型用法是： 作为函数的参数，表示该函数的参数不是对象。 作为对象原型链的终点。   undefined 表示”缺少值”，就是此处应该有一个值，但是还没有定义。典型用法是： 变量被声明了，但没有赋值时，就等于 undefined。 调用函数时，应该提供的参数没有提供，该参数等于 undefined。 对象没有赋">
+<meta name="twitter:title" content="ES6笔记（三）">
+<meta name="twitter:description" content="参考资料：http://es6.ruanyifeng.com  Symbol概述ES5 的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了一个他人提供的对象，但又想为这个对象添加新的方法（mixin 模式），新方法的名字就有可能与现有方法产生冲突。如果有一种机制，保证每个属性的名字都是独一无二的就好了，这样就从根本上防止属性名的冲突。这就是 ES6 引入 Symbol 的原因。 ES">
 
 
 
@@ -115,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="https://zhangyuhaoL.github.io/2019/05/22/平时笔记/">
+  <link rel="canonical" href="https://zhangyuhaoL.github.io/2019/07/02/ES6笔记3/">
 
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>平时笔记 | Shmily-ll</title>
+  <title>ES6笔记（三） | Shmily-ll</title>
   
 
 
@@ -345,7 +345,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangyuhaoL.github.io/2019/05/22/平时笔记/">
+    <link itemprop="mainEntityOfPage" href="https://zhangyuhaoL.github.io/2019/07/02/ES6笔记3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangyuhao">
@@ -362,7 +362,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">平时笔记
+          <h1 class="post-title" itemprop="name headline">ES6笔记（三）
 
               
             
@@ -388,24 +388,12 @@
                 
               
 
-              <time title="创建时间：2019-05-22 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-22T00:00:00+08:00">2019-05-22</time>
+              <time title="创建时间：2019-07-02 00:00:00 / 修改时间：18:04:37" itemprop="dateCreated datePublished" datetime="2019-07-02T00:00:00+08:00">2019-07-02</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-23 14:41:30" itemprop="dateModified" datetime="2019-05-23T14:41:30+08:00">2019-05-23</time>
               
             
           </span>
@@ -457,55 +445,22 @@
       
 
       
-        <h2 id="undefined-与-null-的区别"><a href="#undefined-与-null-的区别" class="headerlink" title="undefined 与 null 的区别"></a>undefined 与 null 的区别</h2><ul>
-<li>null 表示”没有对象”，即该处不应该有值。典型用法是：<ol>
-<li>作为函数的参数，表示该函数的参数不是对象。</li>
-<li>作为对象原型链的终点。</li>
-</ol>
-</li>
-<li>undefined 表示”缺少值”，就是此处应该有一个值，但是还没有定义。典型用法是：<ol>
-<li>变量被声明了，但没有赋值时，就等于 undefined。</li>
-<li>调用函数时，应该提供的参数没有提供，该参数等于 undefined。</li>
-<li>对象没有赋值的属性，该属性的值为 undefined。</li>
-<li>函数没有返回值时，默认返回 undefined。<blockquote>
-<p>高级程序中提到：对未初始化和未声明的变量执行 typeof 操作返回 undefined。对 null 执行 typeof 操作返回 object。</p>
+        <blockquote>
+<p>参考资料：<a href="http://es6.ruanyifeng.com" target="_blank" rel="noopener">http://es6.ruanyifeng.com</a></p>
 </blockquote>
-</li>
-</ol>
-</li>
-</ul>
+<h2 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h2><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>ES5 的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了一个他人提供的对象，但又想为这个对象添加新的方法（mixin 模式），新方法的名字就有可能与现有方法产生冲突。如果有一种机制，保证每个属性的名字都是独一无二的就好了，这样就从根本上防止属性名的冲突。这就是 ES6 引入 Symbol 的原因。</p>
+<p>ES6 引入了一种新的原始数据类型 Symbol，表示独一无二的值。它是 JavaScript 语言的第七种数据类型，前六种是：<strong>undefined</strong>、<strong>null</strong>、<strong>布尔值（Boolean）</strong>、<strong>字符串（String）</strong>、<strong>数值（Number）</strong>、<strong>对象（Object）</strong>。</p>
+<p>Symbol 值通过 Symbol 函数生成。这就是说，对象的属性名现在可以有两种类型，一种是原来就有的字符串，另一种就是新增的 Symbol 类型。凡是属性名属于 Symbol 类型，就都是独一无二的，可以保证不会与其他属性名产生冲突。</p>
 <a id="more"></a>
-<h2 id="事件委托（事件代理）"><a href="#事件委托（事件代理）" class="headerlink" title="事件委托（事件代理）"></a>事件委托（事件代理）</h2><ul>
-<li><p>事件委托就是事件目标自身不处理事件，而是把处理任务委托给其父元素或者祖先元素，甚至根元素（document）。</p>
-<blockquote>
-<p>高级程序：事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。</p>
-</blockquote>
-<blockquote>
-<p>原理：利用冒泡；</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="作用域、闭包"><a href="#作用域、闭包" class="headerlink" title="作用域、闭包"></a>作用域、闭包</h2><ul>
-<li>作用域（scope）指的是变量存在的范围。在 ES5 的规范中，Javascript 只有两种作用域：一种是<strong>全局作用域</strong>，变量在整个程序中一直存在，所有地方都可以读取；另一种是<strong>函数作用域</strong>，变量只在函数内部存在。ES6 又新增了<strong>块级作用域</strong>；</li>
-<li>闭包，即能够读取其他函数内部变量的函数。由于在 JavaScript 语言中，只有函数内部的子函数才能读取内部变量，因此可以把闭包简单理解成“定义在一个函数内部的函数”。<blockquote>
-<p>闭包的最大用处有两个，一个是可以读取函数内部的变量，另一个就是让这些变量始终保持在内存中，即闭包可以使得它诞生环境一直存在。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="new-命令的原理"><a href="#new-命令的原理" class="headerlink" title="new 命令的原理"></a>new 命令的原理</h2><ol>
-<li>创建一个空对象，作为将要返回的对象实例。</li>
-<li>将这个空对象的原型，指向构造函数的 prototype 属性。</li>
-<li>将这个空对象赋值给函数内部的 this 关键字。</li>
-<li>开始执行构造函数内部的代码。</li>
-</ol>
-<h2 id="prototype-属性的作用"><a href="#prototype-属性的作用" class="headerlink" title="prototype 属性的作用"></a>prototype 属性的作用</h2><ul>
-<li>JavaScript 继承机制的设计思想就是，原型对象的所有属性和方法，都能被实例对象共享。也就是说，如果属性和方法定义在原型上，那么所有实例对象就能共享，不仅节省了内存，还体现了实例对象之间的联系。</li>
-</ul>
-<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><ul>
-<li><p>JavaScript 规定，所有对象都有自己的原型对象（prototype）。一方面，任何一个对象，都可以充当其他对象的原型；另一方面，由于原型对象也是对象，所以它也有自己的原型。因此，就会形成一个“原型链”（prototype chain）</p>
-<p>如果一层层地上溯，所有对象的原型最终都可以上溯到 Object.prototype，即 Object 构造函数的 prototype 属性。</p>
-</li>
-</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s = <span class="built_in">Symbol</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">typeof</span> s;</span><br><span class="line"><span class="comment">// "symbol"</span></span><br></pre></td></tr></table></figure>
+<p>注意，Symbol 函数前不能使用 new 命令，否则会报错。这是因为生成的 Symbol 是一个原始类型的值，不是对象。也就是说，由于 Symbol 值不是对象，所以不能添加属性。基本上，它是一种类似于字符串的数据类型。</p>
+<p>Symbol 函数可以接受一个字符串作为参数，表示对 Symbol 实例的<strong>描述</strong>，主要是为了在控制台显示，或者转为字符串时，比较容易区分。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s1 = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</span><br><span class="line"><span class="keyword">let</span> s2 = <span class="built_in">Symbol</span>(<span class="string">'bar'</span>);</span><br><span class="line"></span><br><span class="line">s1; <span class="comment">// Symbol(foo)</span></span><br><span class="line">s2; <span class="comment">// Symbol(bar)</span></span><br><span class="line"></span><br><span class="line">s1.toString(); <span class="comment">// "Symbol(foo)"</span></span><br><span class="line">s2.toString(); <span class="comment">// "Symbol(bar)"</span></span><br><span class="line"><span class="comment">//上面代码中，s1和s2是两个 Symbol 值。如果不加参数，它们在控制台的输出都是Symbol()，不利于区分</span></span><br><span class="line"><span class="comment">//有了参数以后，就等于为它们加上了描述，输出的时候就能够分清，到底是哪一个值。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//如果 Symbol 的参数是一个对象，就会调用该对象的toString方法，将其转为字符串，然后才生成一个 Symbol 值。</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'abc'</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> sym = <span class="built_in">Symbol</span>(obj);</span><br><span class="line">sym; <span class="comment">// Symbol(abc)</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> Symbol 函数的参数只是表示对当前 Symbol 值的描述，因此相同参数的 Symbol 函数的返回值是不相等的。</p>
+<p>Symbol 值不能与其他类型的值进行运算，会报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sym = <span class="built_in">Symbol</span>(<span class="string">'My symbol'</span>);</span><br><span class="line"></span><br><span class="line"><span class="string">'your symbol is '</span> + sym;</span><br><span class="line"><span class="comment">// TypeError: can't convert symbol to string</span></span><br><span class="line"><span class="string">`your symbol is <span class="subst">$&#123;sym&#125;</span>`</span>;</span><br><span class="line"><span class="comment">// TypeError: can't convert symbol to string</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//但是，Symbol 值可以显式转为字符串。</span></span><br><span class="line"><span class="keyword">let</span> sym = <span class="built_in">Symbol</span>(<span class="string">'My symbol'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span>(sym); <span class="comment">// 'Symbol(My symbol)'</span></span><br><span class="line">sym.toString(); <span class="comment">// 'Symbol(My symbol)'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//另外，Symbol 值也可以转为布尔值，但是不能转为数值。</span></span><br><span class="line"><span class="keyword">let</span> sym = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="built_in">Boolean</span>(sym); <span class="comment">// true</span></span><br><span class="line">!sym; <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (sym) &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Number</span>(sym); <span class="comment">// TypeError</span></span><br><span class="line">sym + <span class="number">2</span>; <span class="comment">// TypeError</span></span><br></pre></td></tr></table></figure>
+<h4 id="作为属性名的-Symbol"><a href="#作为属性名的-Symbol" class="headerlink" title="作为属性名的 Symbol"></a>作为属性名的 Symbol</h4><p>由于每一个 Symbol 值都是不相等的，这意味着 Symbol 值可以作为标识符，用于对象的属性名，就能保证不会出现同名的属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mySymbol = <span class="built_in">Symbol</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一种写法</span></span><br><span class="line"><span class="keyword">let</span> a = &#123;&#125;;</span><br><span class="line">a[mySymbol] = <span class="string">'Hello!'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种写法</span></span><br><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">  [mySymbol]: <span class="string">'Hello!'</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第三种写法</span></span><br><span class="line"><span class="keyword">let</span> a = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(a, mySymbol, &#123; <span class="attr">value</span>: <span class="string">'Hello!'</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上写法都得到同样结果</span></span><br><span class="line">a[mySymbol]; <span class="comment">// "Hello!"</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -542,15 +497,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/06/27/ES6笔记2/" rel="next" title="ES6笔记（二）">
+                <i class="fa fa-chevron-left"></i> ES6笔记（二）
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/23/杂文/" rel="prev" title="有感而记">
-                有感而记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -731,7 +686,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined-与-null-的区别"><span class="nav-number">1.</span> <span class="nav-text">undefined 与 null 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件委托（事件代理）"><span class="nav-number">2.</span> <span class="nav-text">事件委托（事件代理）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域、闭包"><span class="nav-number">3.</span> <span class="nav-text">作用域、闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new-命令的原理"><span class="nav-number">4.</span> <span class="nav-text">new 命令的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#prototype-属性的作用"><span class="nav-number">5.</span> <span class="nav-text">prototype 属性的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型链"><span class="nav-number">6.</span> <span class="nav-text">原型链</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Symbol"><span class="nav-number">1.</span> <span class="nav-text">Symbol</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.0.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作为属性名的-Symbol"><span class="nav-number">1.0.2.</span> <span class="nav-text">作为属性名的 Symbol</span></a></li></ol></li></ol></div>
             
 
           </div>
