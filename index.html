@@ -344,6 +344,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhangyuhaoL.github.io/2019/07/22/ES6笔记10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangyuhao">
+      <meta itemprop="description" content="JavaScript,React,Vue">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shmily-ll">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/22/ES6笔记10/" class="post-title-link" itemprop="url">ES6笔记（十）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-22 00:00:00 / 修改时间：17:52:09" itemprop="dateCreated datePublished" datetime="2019-07-22T00:00:00+08:00">2019-07-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>参考资料：<a href="http://es6.ruanyifeng.com" target="_blank" rel="noopener">http://es6.ruanyifeng.com</a></p>
+</blockquote>
+<h2 id="编程风格"><a href="#编程风格" class="headerlink" title="编程风格"></a>编程风格</h2><p>本章探讨如何将 ES6 的新语法，运用到编码实践之中，与传统的 JavaScript 语法结合在一起，写出合理的、易于阅读和维护的代码。</p>
+<h4 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h4><p><strong>let 取代 var</strong></p>
+<p>ES6 提出了两个新的声明变量的命令：let 和 const。其中，let 完全可以取代 var，因为两者语义相同，而且 let 没有副作用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> x = <span class="string">'hello'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码如果用 var 替代 let，实际上就声明了两个全局变量，这显然不是本意。变量应该只在其声明的代码块内有效，var 命令做不到这一点。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/22/ES6笔记10/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://zhangyuhaoL.github.io/2019/07/19/ES6笔记9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -364,7 +538,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/19/ES6笔记9/" class="post-title-link" itemprop="url">ES6笔记（八）</a>
+                <a href="/2019/07/19/ES6笔记9/" class="post-title-link" itemprop="url">ES6笔记（九）</a>
               
             
           </h1>
@@ -406,7 +580,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-22 15:48:09" itemprop="dateModified" datetime="2019-07-22T15:48:09+08:00">2019-07-22</time>
+                <time title="修改时间：2019-07-22 15:54:45" itemprop="dateModified" datetime="2019-07-22T15:54:45+08:00">2019-07-22</time>
               
             
           </span>
@@ -1989,196 +2163,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangyuhaoL.github.io/2019/06/13/如何阅读一本书2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhangyuhao">
-      <meta itemprop="description" content="JavaScript,React,Vue">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shmily-ll">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/13/如何阅读一本书2/" class="post-title-link" itemprop="url">如何阅读一本书（二）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-13 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-13T00:00:00+08:00">2019-06-13</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-18 15:01:35" itemprop="dateModified" datetime="2019-06-18T15:01:35+08:00">2019-06-18</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/阅读/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="第二篇-阅读的三个层次：分析阅读"><a href="#第二篇-阅读的三个层次：分析阅读" class="headerlink" title="第二篇 阅读的三个层次：分析阅读"></a><div align="center">第二篇 阅读的三个层次：分析阅读</div></h1><h2 id="第六章-一本书的分类"><a href="#第六章-一本书的分类" class="headerlink" title="第六章 一本书的分类"></a>第六章 一本书的分类</h2><p><strong>书籍分类的重要性</strong></p>
-<blockquote>
-<p>分析阅读的第一个规则可以这么说：规则一，你一定要知道自己在读的是哪一类书，而且要越早知道越好。最好早在你开始阅读之前就先知道。</p>
-</blockquote>
-<p><strong>从一本书的书名中你能学到什么</strong></p>
-<p><strong>实用性 VS.理论性作品</strong></p>
-<blockquote>
-<p>实用是与某种有效的做法有关，不管是立即或长程的功效。而理论所关注的却是去明白或了解某件事。明智的行动就是来自知识。知识可以用在许多方面，不只是控制自然，发明有用的机器或工具，还可以指导人类的行为，在多种技术领域中校正人类的运作技巧。这里我们要举的例子是纯科学与应用科学的区别，或是像通常非常粗糙的那种说法，也就是科学与科技之间的区别。</p>
-</blockquote>
-<blockquote>
-<p>要让知识变成实用，就要有操作的规则。我们一定要超越”知道这是怎么回事”，进而明白”如果我们想做些什么，应该怎么利用它”。（知与行的区别）</p>
-</blockquote>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/06/13/如何阅读一本书2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2225,7 +2209,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
