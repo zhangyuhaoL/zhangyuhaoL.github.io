@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="收集一些面试题实现防抖函数（debounce）防抖函数原理：在事件被触发 n 秒后再执行回调，如果在这 n 秒内又被触发，则重新计时。 手写简化版: 123456789const debounce = (fn, delay) = &amp;gt; &amp;#123;  let timer = null;  return (...args) =&amp;gt; &amp;#123;    clearTimeout(timer);">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试题积累">
+<meta property="og:url" content="https://zhangyuhaoL.github.io/2019/08/14/面试题积累/index.html">
+<meta property="og:site_name" content="Shmily-ll">
+<meta property="og:description" content="收集一些面试题实现防抖函数（debounce）防抖函数原理：在事件被触发 n 秒后再执行回调，如果在这 n 秒内又被触发，则重新计时。 手写简化版: 123456789const debounce = (fn, delay) = &amp;gt; &amp;#123;  let timer = null;  return (...args) =&amp;gt; &amp;#123;    clearTimeout(timer);">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-14T10:07:02.911Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试题积累">
+<meta name="twitter:description" content="收集一些面试题实现防抖函数（debounce）防抖函数原理：在事件被触发 n 秒后再执行回调，如果在这 n 秒内又被触发，则重新计时。 手写简化版: 123456789const debounce = (fn, delay) = &amp;gt; &amp;#123;  let timer = null;  return (...args) =&amp;gt; &amp;#123;    clearTimeout(timer);">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://zhangyuhaoL.github.io/2019/08/14/面试题积累/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>面试题积累 | Shmily-ll</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shmily-ll</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">要是记不住，就多写写吧</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhangyuhaoL.github.io/2019/08/14/面试题积累/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangyuhao">
+      <meta itemprop="description" content="JavaScript,React,Vue">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shmily-ll">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面试题积累
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-14 00:00:00 / 修改时间：18:07:02" itemprop="dateCreated datePublished" datetime="2019-08-14T00:00:00+08:00">2019-08-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="收集一些面试题"><a href="#收集一些面试题" class="headerlink" title="收集一些面试题"></a>收集一些面试题</h2><h4 id="实现防抖函数（debounce）"><a href="#实现防抖函数（debounce）" class="headerlink" title="实现防抖函数（debounce）"></a>实现防抖函数（debounce）</h4><p>防抖函数原理：在事件被触发 n 秒后再执行回调，如果在这 n 秒内又被触发，则重新计时。</p>
+<p>手写简化版:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> debounce = (fn, delay) = &gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span><br><span class="line">    clearTimeout(timer);</span><br><span class="line">    timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      fn.apply(<span class="keyword">this</span>, args)</span><br><span class="line">    &#125;, delay);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>适用场景：</p>
+<ul>
+<li>按钮提交场景：防止多次提交按钮，只执行最后一次提交；</li>
+<li>服务端验证场景：表单验证需要服务端配合，只执行一段连续的输入事件的最后一次，还有搜索联想词功能类似</li>
+</ul>
+<p>生存环境请用 lodash.debounce</p>
+<h4 id="实现节流函数（throttle）"><a href="#实现节流函数（throttle）" class="headerlink" title="实现节流函数（throttle）"></a>实现节流函数（throttle）</h4><p>节流函数原理:规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效。</p>
+<p>手写简化版:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> throttle = <span class="function">(<span class="params">fn, delay = <span class="number">500</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> flag = <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!flag) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    flag = <span class="literal">false</span>;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      fn.apply(<span class="keyword">this</span>, args);</span><br><span class="line">      flag = <span class="literal">true</span>;</span><br><span class="line">    &#125;, delay);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>适用场景：</p>
+<ul>
+<li>拖拽场景：固定时间内只执行一次，防止超高频次触发位置变动</li>
+<li>缩放场景：监控浏览器 resize</li>
+<li>动画场景：避免短时间内多次触发动画引起性能问题</li>
+</ul>
+<h4 id="深克隆（deepclone）"><a href="#深克隆（deepclone）" class="headerlink" title="深克隆（deepclone）"></a>深克隆（deepclone）</h4><p>简单版：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> newObj = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(oldObj));</span><br></pre></td></tr></table></figure>
+<p>局限性：</p>
+<ol>
+<li>他无法实现对函数 、RegExp 等特殊对象的克隆</li>
+<li>会抛弃对象的 constructor,所有的构造函数会指向 Object</li>
+<li>对象有循环引用,会报错</li>
+</ol>
+<p>面试版:</p>
+<h4 id="实现-Event-event-bus"><a href="#实现-Event-event-bus" class="headerlink" title="实现 Event(event bus)"></a>实现 Event(event bus)</h4><p>event bus 既是 node 中各个模块的基石，又是前端组件通信的依赖手段之一，同时涉及了订阅-发布设计模式，是非常重要的基础。</p>
+<p>简单版：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EventEmeitter</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>._events = <span class="keyword">this</span>._events || <span class="keyword">new</span> <span class="built_in">Map</span>(); <span class="comment">// 储存事件/回调键值对</span></span><br><span class="line">    <span class="keyword">this</span>._maxListeners = <span class="keyword">this</span>._maxListeners || <span class="number">10</span>; <span class="comment">// 设立监听上限</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 触发名为type的事件</span></span><br><span class="line">EventEmeitter.prototype.emit = <span class="function"><span class="keyword">function</span>(<span class="params">type, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> handler;</span><br><span class="line">  <span class="comment">// 从储存事件键值对的this._events中获取对应事件回调函数</span></span><br><span class="line">  handler = <span class="keyword">this</span>._events.get(type);</span><br><span class="line">  <span class="keyword">if</span> (args.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    handler.apply(<span class="keyword">this</span>, args);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    handler.call(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听名为type的事件</span></span><br><span class="line">EventEmeitter.prototype.addListener = <span class="function"><span class="keyword">function</span>(<span class="params">type, fn</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将type事件以及对应的fn函数放入this._events中储存</span></span><br><span class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>._events.get(type)) &#123;</span><br><span class="line">    <span class="keyword">this</span>._events.set(type, fn);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>面试版：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 触发名为type的事件</span></span><br><span class="line">EventEmeitter.prototype.emit = <span class="function"><span class="keyword">function</span>(<span class="params">type, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> handler;</span><br><span class="line">  handler = <span class="keyword">this</span>._events.get(type);</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(handler)) &#123;</span><br><span class="line">    <span class="comment">// 如果是一个数组说明有多个监听者,需要依次此触发里面的函数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; handler.length; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (args.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        handler[i].apply(<span class="keyword">this</span>, args);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        handler[i].call(<span class="keyword">this</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 单个函数的情况我们直接触发即可</span></span><br><span class="line">    <span class="keyword">if</span> (args.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      handler.apply(<span class="keyword">this</span>, args);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      handler.call(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听名为type的事件</span></span><br><span class="line">EventEmeitter.prototype.addListener = <span class="function"><span class="keyword">function</span>(<span class="params">type, fn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> handler = <span class="keyword">this</span>._events.get(type); <span class="comment">// 获取对应事件名称的函数清单</span></span><br><span class="line">  <span class="keyword">if</span> (!handler) &#123;</span><br><span class="line">    <span class="keyword">this</span>._events.set(type, fn);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (handler &amp;&amp; <span class="keyword">typeof</span> handler === <span class="string">'function'</span>) &#123;</span><br><span class="line">    <span class="comment">// 如果handler是函数说明只有一个监听者</span></span><br><span class="line">    <span class="keyword">this</span>._events.set(type, [handler, fn]); <span class="comment">// 多个监听者我们需要用数组储存</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    handler.push(fn); <span class="comment">// 已经有多个监听者,那么直接往数组里push函数即可</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">EventEmeitter.prototype.removeListener = <span class="function"><span class="keyword">function</span>(<span class="params">type, fn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> handler = <span class="keyword">this</span>._events.get(type); <span class="comment">// 获取对应事件名称的函数清单</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果是函数,说明只被监听了一次</span></span><br><span class="line">  <span class="keyword">if</span> (handler &amp;&amp; <span class="keyword">typeof</span> handler === <span class="string">'function'</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>._events.delete(type, fn);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> postion;</span><br><span class="line">    <span class="comment">// 如果handler是数组,说明被监听多次要找到对应的函数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; handler.length; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (handler[i] === fn) &#123;</span><br><span class="line">        postion = i;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        postion = <span class="number">-1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果找到匹配的函数,从数组中清除</span></span><br><span class="line">    <span class="keyword">if</span> (postion !== <span class="number">-1</span>) &#123;</span><br><span class="line">      <span class="comment">// 找到数组对应的位置,直接清除此回调</span></span><br><span class="line">      handler.splice(postion, <span class="number">1</span>);</span><br><span class="line">      <span class="comment">// 如果清除后只有一个函数,那么取消数组,以函数形式保存</span></span><br><span class="line">      <span class="keyword">if</span> (handler.length === <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>._events.set(type, handler[<span class="number">0</span>]);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="实现-instanceOf"><a href="#实现-instanceOf" class="headerlink" title="实现 instanceOf"></a>实现 instanceOf</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模拟 instanceof</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">instance_of</span>(<span class="params">L, R</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//L 表示左表达式，R 表示右表达式</span></span><br><span class="line">  <span class="keyword">var</span> O = R.prototype; <span class="comment">// 取 R 的显示原型</span></span><br><span class="line">  L = L.__proto__; <span class="comment">// 取 L 的隐式原型</span></span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (L === <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (O === L)</span><br><span class="line">      <span class="comment">// 这里重点：当 O 严格等于 L 时，返回 true</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    L = L.__proto__;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="模拟-new"><a href="#模拟-new" class="headerlink" title="模拟 new"></a>模拟 new</h4><p>new 操作符做了这些事：</p>
+<ul>
+<li>它创建了一个全新的对象</li>
+<li>它会被执行[[Prototype]]（也就是__proto__）链接</li>
+<li>它使 this 指向新创建的对象</li>
+<li>通过 new 创建的每个对象将最终被[[Prototype]]链接到这个函数的 prototype 对象上</li>
+<li>如果函数没有返回对象类型 Object(包含 Functoin, Array, Date, RegExg, Error)，那么 new 表达式中的函数调用将返回该对象引用</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// objectFactory(name, 'cxk', '18')</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">objectFactory</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">  <span class="keyword">const</span> Constructor = [].shift.call(<span class="built_in">arguments</span>);</span><br><span class="line"></span><br><span class="line">  obj.__proto__ = Constructor.prototype;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> ret = Constructor.apply(obj, <span class="built_in">arguments</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> ret === <span class="string">'object'</span> ? ret : obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="实现一个-call"><a href="#实现一个-call" class="headerlink" title="实现一个 call"></a>实现一个 call</h4><p>call 做了什么:</p>
+<ul>
+<li>将函数设为对象的属性</li>
+<li>执行&amp;删除这个函数</li>
+<li>指定 this 到函数并传入给定参数执行函数</li>
+<li>如果不传入参数，默认指向为 window</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模拟 call bar.mycall(null);</span></span><br><span class="line"><span class="comment">//实现一个call方法：</span></span><br><span class="line"><span class="built_in">Function</span>.prototype.myCall = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//此处没有考虑context非object情况</span></span><br><span class="line">  context.fn = <span class="keyword">this</span>;</span><br><span class="line">  <span class="keyword">let</span> args = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>, len = <span class="built_in">arguments</span>.length; i &lt; len; i++) &#123;</span><br><span class="line">    args.push(<span class="built_in">arguments</span>[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  context.fn(...args);</span><br><span class="line">  <span class="keyword">let</span> result = context.fn(...args);</span><br><span class="line">  <span class="keyword">delete</span> context.fn;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="实现-bind"><a href="#实现-bind" class="headerlink" title="实现 bind"></a>实现 bind</h4><p>实现 bind 要做什么</p>
+<ul>
+<li>返回一个函数，绑定 this，传递预置参数</li>
+<li>bind 返回的函数可以作为构造函数使用。故作为构造函数时应使得 this 失效，但是传入的参数依然有效</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">``</span><span class="string">`</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#### 模拟 Object.create</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Object.create()方法创建一个新对象，使用现有的对象来提供新创建的对象的\_\_proto\_\_。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">proto</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">  F.prototype = proto;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> F();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="实现类的继承"><a href="#实现类的继承" class="headerlink" title="实现类的继承"></a>实现类的继承</h4><p>一种最理想的继承方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.parent = name;</span><br><span class="line">&#125;</span><br><span class="line">Parent.prototype.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.parent&#125;</span>: 你打篮球的样子像kunkun`</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params">name, parent</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将父类的构造函数绑定在子类上</span></span><br><span class="line">  Parent.call(<span class="keyword">this</span>, parent);</span><br><span class="line">  <span class="keyword">this</span>.child = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> 1. 这一步不用Child.prototype =Parent.prototype的原因是怕共享内存，修改父类原型对象就会影响子类</span></span><br><span class="line"><span class="comment"> 2. 不用Child.prototype = new Parent()的原因是会调用2次父类的构造方法（另一次是call），会存在一份多余的父类实例属性</span></span><br><span class="line"><span class="comment">3. Object.create是创建了父类原型的副本，与父类原型完全隔离</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">Child.prototype = <span class="built_in">Object</span>.create(Parent.prototype);</span><br><span class="line">Child.prototype.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.parent&#125;</span>好，我是练习时长两年半的<span class="subst">$&#123;<span class="keyword">this</span>.child&#125;</span>`</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意记得把子类的构造指向子类本身</span></span><br><span class="line">Child.prototype.constructor = Child;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> parent = <span class="keyword">new</span> Parent(<span class="string">'father'</span>);</span><br><span class="line">parent.say(); <span class="comment">// father: 你打篮球的样子像kunkun</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> child = <span class="keyword">new</span> Child(<span class="string">'cxk'</span>, <span class="string">'father'</span>);</span><br><span class="line">child.say(); <span class="comment">// father好，我是练习时长两年半的cxk</span></span><br></pre></td></tr></table></figure>
+<h4 id="实现-JSON-parse"><a href="#实现-JSON-parse" class="headerlink" title="实现 JSON.parse"></a>实现 JSON.parse</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> json = <span class="string">'&#123;"name":"cxk", "age":25&#125;'</span>;</span><br><span class="line"><span class="keyword">var</span> obj = <span class="built_in">eval</span>(<span class="string">'('</span> + json + <span class="string">')'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="实现-Promise"><a href="#实现-Promise" class="headerlink" title="实现 Promise"></a>实现 Promise</h4><h4 id="解析-URL-Params-为对象"><a href="#解析-URL-Params-为对象" class="headerlink" title="解析 URL Params 为对象"></a>解析 URL Params 为对象</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> url =</span><br><span class="line">  <span class="string">'http://www.domain.com/?user=anonymous&amp;id=123&amp;id=456&amp;city=%E5%8C%97%E4%BA%AC&amp;enabled'</span>;</span><br><span class="line">parseParam(url);</span><br><span class="line"><span class="comment">/* 结果</span></span><br><span class="line"><span class="comment">&#123; user: 'anonymous',</span></span><br><span class="line"><span class="comment">  id: [ 123, 456 ], // 重复出现的 key 要组装成数组，能被转成数字的就转成数字类型</span></span><br><span class="line"><span class="comment">  city: '北京', // 中文需解码</span></span><br><span class="line"><span class="comment">  enabled: true, // 未指定值得 key 约定为 true</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseParam</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> paramsStr = <span class="regexp">/.+\?(.+)$/</span>.exec(url)[<span class="number">1</span>]; <span class="comment">// 将 ? 后面的字符串取出来</span></span><br><span class="line">  <span class="keyword">const</span> paramsArr = paramsStr.split(<span class="string">'&amp;'</span>); <span class="comment">// 将字符串以 &amp; 分割后存到数组中</span></span><br><span class="line">  <span class="keyword">let</span> paramsObj = &#123;&#125;;</span><br><span class="line">  <span class="comment">// 将 params 存到对象中</span></span><br><span class="line">  paramsArr.forEach(<span class="function"><span class="params">param</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="regexp">/=/</span>.test(param)) &#123;</span><br><span class="line">      <span class="comment">// 处理有 value 的参数</span></span><br><span class="line">      <span class="keyword">let</span> [key, val] = param.split(<span class="string">'='</span>); <span class="comment">// 分割 key 和 value</span></span><br><span class="line">      val = <span class="built_in">decodeURIComponent</span>(val); <span class="comment">// 解码</span></span><br><span class="line">      val = <span class="regexp">/^\d+$/</span>.test(val) ? <span class="built_in">parseFloat</span>(val) : val; <span class="comment">// 判断是否转为数字</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (paramsObj.hasOwnProperty(key)) &#123;</span><br><span class="line">        <span class="comment">// 如果对象有 key，则添加一个值</span></span><br><span class="line">        paramsObj[key] = [].concat(paramsObj[key], val);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 如果对象没有这个 key，创建 key 并设置值</span></span><br><span class="line">        paramsObj[key] = val;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 处理没有 value 的参数</span></span><br><span class="line">      paramsObj[param] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> paramsObj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>作者：寻找海蓝 96<br>链接：<a href="https://juejin.im/post/5d51e16d6fb9a06ae17d6bbc" target="_blank" rel="noopener">https://juejin.im/post/5d51e16d6fb9a06ae17d6bbc</a><br>来源：掘金</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/22/ES6笔记10/" rel="next" title="ES6笔记（十）">
+                <i class="fa fa-chevron-left"></i> ES6笔记（十）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhangyuhao</p>
+              <div class="site-description motion-element" itemprop="description">JavaScript,React,Vue</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zhangyuhaoL" title="GitHub &rarr; https://github.com/zhangyuhaoL" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:769926882@qq.com" title="E-Mail &rarr; mailto:769926882@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#收集一些面试题"><span class="nav-number">1.</span> <span class="nav-text">收集一些面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现防抖函数（debounce）"><span class="nav-number">1.0.1.</span> <span class="nav-text">实现防抖函数（debounce）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现节流函数（throttle）"><span class="nav-number">1.0.2.</span> <span class="nav-text">实现节流函数（throttle）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#深克隆（deepclone）"><span class="nav-number">1.0.3.</span> <span class="nav-text">深克隆（deepclone）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-Event-event-bus"><span class="nav-number">1.0.4.</span> <span class="nav-text">实现 Event(event bus)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-instanceOf"><span class="nav-number">1.0.5.</span> <span class="nav-text">实现 instanceOf</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模拟-new"><span class="nav-number">1.0.6.</span> <span class="nav-text">模拟 new</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现一个-call"><span class="nav-number">1.0.7.</span> <span class="nav-text">实现一个 call</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-bind"><span class="nav-number">1.0.8.</span> <span class="nav-text">实现 bind</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现类的继承"><span class="nav-number">1.0.9.</span> <span class="nav-text">实现类的继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-JSON-parse"><span class="nav-number">1.0.10.</span> <span class="nav-text">实现 JSON.parse</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-Promise"><span class="nav-number">1.0.11.</span> <span class="nav-text">实现 Promise</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析-URL-Params-为对象"><span class="nav-number">1.0.12.</span> <span class="nav-text">解析 URL Params 为对象</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangyuhao</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_uv"> 
+  本站访客数<span id="busuanzi_value_site_pv"></span>次
+  <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv">
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
