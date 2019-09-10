@@ -96,20 +96,20 @@
 
 
 
-  <meta name="description" content="前端模块化详解 在 JavaScript 发展初期就是为了实现简单的页面交互逻辑，寥寥数语即可；如今 CPU、浏览器性能得到了极大的提升，很多页面逻辑迁移到了客户端（表单验证等），随着 web2.0 时代的到来，Ajax 技术得到广泛应用，jQuery 等前端库层出不穷，前端代码日益膨胀，此时在 JS 方面就会考虑使用模块化规范去管理。 模块化的理解 什么是模块   将一个复杂的程序依据一定的规则">
+  <meta name="description" content="来源：浪里行舟 前端模块化详解 在 JavaScript 发展初期就是为了实现简单的页面交互逻辑，寥寥数语即可；如今 CPU、浏览器性能得到了极大的提升，很多页面逻辑迁移到了客户端（表单验证等），随着 web2.0 时代的到来，Ajax 技术得到广泛应用，jQuery 等前端库层出不穷，前端代码日益膨胀，此时在 JS 方面就会考虑使用模块化规范去管理。 模块化的理解 什么是模块   将一个复杂的程">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端基础知识汇总（Javascript）">
 <meta property="og:url" content="https://zhangyuhaoL.github.io/2019/09/04/前端基础汇总2/index.html">
 <meta property="og:site_name" content="Shmily-ll">
-<meta property="og:description" content="前端模块化详解 在 JavaScript 发展初期就是为了实现简单的页面交互逻辑，寥寥数语即可；如今 CPU、浏览器性能得到了极大的提升，很多页面逻辑迁移到了客户端（表单验证等），随着 web2.0 时代的到来，Ajax 技术得到广泛应用，jQuery 等前端库层出不穷，前端代码日益膨胀，此时在 JS 方面就会考虑使用模块化规范去管理。 模块化的理解 什么是模块   将一个复杂的程序依据一定的规则">
+<meta property="og:description" content="来源：浪里行舟 前端模块化详解 在 JavaScript 发展初期就是为了实现简单的页面交互逻辑，寥寥数语即可；如今 CPU、浏览器性能得到了极大的提升，很多页面逻辑迁移到了客户端（表单验证等），随着 web2.0 时代的到来，Ajax 技术得到广泛应用，jQuery 等前端库层出不穷，前端代码日益膨胀，此时在 JS 方面就会考虑使用模块化规范去管理。 模块化的理解 什么是模块   将一个复杂的程">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://zhangyuhaol.github.io/2019/09/04/前端基础汇总2/前端模块化.png">
 <meta property="og:image" content="https://zhangyuhaol.github.io/2019/09/04/前端基础汇总2/XXX">
-<meta property="og:updated_time" content="2019-09-09T09:57:53.225Z">
+<meta property="og:updated_time" content="2019-09-10T10:05:16.913Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端基础知识汇总（Javascript）">
-<meta name="twitter:description" content="前端模块化详解 在 JavaScript 发展初期就是为了实现简单的页面交互逻辑，寥寥数语即可；如今 CPU、浏览器性能得到了极大的提升，很多页面逻辑迁移到了客户端（表单验证等），随着 web2.0 时代的到来，Ajax 技术得到广泛应用，jQuery 等前端库层出不穷，前端代码日益膨胀，此时在 JS 方面就会考虑使用模块化规范去管理。 模块化的理解 什么是模块   将一个复杂的程序依据一定的规则">
+<meta name="twitter:description" content="来源：浪里行舟 前端模块化详解 在 JavaScript 发展初期就是为了实现简单的页面交互逻辑，寥寥数语即可；如今 CPU、浏览器性能得到了极大的提升，很多页面逻辑迁移到了客户端（表单验证等），随着 web2.0 时代的到来，Ajax 技术得到广泛应用，jQuery 等前端库层出不穷，前端代码日益膨胀，此时在 JS 方面就会考虑使用模块化规范去管理。 模块化的理解 什么是模块   将一个复杂的程">
 <meta name="twitter:image" content="https://zhangyuhaol.github.io/2019/09/04/前端基础汇总2/前端模块化.png">
 
 
@@ -408,7 +408,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-09 17:57:53" itemprop="dateModified" datetime="2019-09-09T17:57:53+08:00">2019-09-09</time>
+                <time title="修改时间：2019-09-10 18:05:16" itemprop="dateModified" datetime="2019-09-10T18:05:16+08:00">2019-09-10</time>
               
             
           </span>
@@ -460,7 +460,8 @@
       
 
       
-        <h3 id="前端模块化详解"><a href="#前端模块化详解" class="headerlink" title="前端模块化详解"></a><div align="center">前端模块化详解</div></h3><hr>
+        <p>来源：<a href="https://github.com/ljianshu/Blog" target="_blank" rel="noopener">浪里行舟</a></p>
+<h3 id="前端模块化详解"><a href="#前端模块化详解" class="headerlink" title="前端模块化详解"></a><div align="center">前端模块化详解</div></h3><hr>
 <p>在 JavaScript 发展初期就是为了实现简单的页面交互逻辑，寥寥数语即可；如今 CPU、浏览器性能得到了极大的提升，很多页面逻辑迁移到了客户端（表单验证等），随着 web2.0 时代的到来，Ajax 技术得到广泛应用，jQuery 等前端库层出不穷，前端代码日益膨胀，此时在 JS 方面就会考虑使用模块化规范去管理。<br><img src="/2019/09/04/前端基础汇总2/前端模块化.png" alt="前端模块化"></p>
 <h4 id="模块化的理解"><a href="#模块化的理解" class="headerlink" title="模块化的理解"></a>模块化的理解</h4><ol>
 <li>什么是模块</li>
@@ -1107,7 +1108,245 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=<span class="string">"btn1"</span>&gt;测试箭头函数this_1&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">&lt;button id="btn2"&gt;测试箭头函数this_2&lt;/</span>button&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  <span class="keyword">let</span> btn2 = <span class="built_in">document</span>.getElementById(<span class="string">'btn2'</span>);</span><br><span class="line">  <span class="keyword">let</span> obj = &#123;</span><br><span class="line">    name: <span class="string">'kobe'</span>,</span><br><span class="line">    age: <span class="number">39</span>,</span><br><span class="line">    getName: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">//其实this取决于最外层的箭头函数,由于obj是个对象而非函数，所以this指向为Window对象</span></span><br><span class="line">      btn2.onclick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);<span class="comment">//window</span></span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  obj.getName();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 <p>由于 this 在箭头函数中已经按照词法作用域绑定了，所以，用 call()或者 apply()调用箭头函数时，无法对 this 进行绑定，即传入的第一个参数被忽略：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  birth: <span class="number">1990</span>,</span><br><span class="line">  getAge: <span class="function"><span class="keyword">function</span>(<span class="params">year</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> b = <span class="keyword">this</span>.birth; <span class="comment">// 1990</span></span><br><span class="line">    <span class="keyword">var</span> fn = <span class="function"><span class="params">y</span> =&gt;</span> y - <span class="keyword">this</span>.birth; <span class="comment">// this.birth仍是1990</span></span><br><span class="line">    <span class="keyword">return</span> fn.call(&#123; <span class="attr">birth</span>: <span class="number">2000</span> &#125;, year);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">obj.getAge(<span class="number">2018</span>); <span class="comment">// 28</span></span><br></pre></td></tr></table></figure>
-</script></li></ul>
+<h3 id="原型与原型链"><a href="#原型与原型链" class="headerlink" title=" 原型与原型链"></a><div align=center> 原型与原型链</h3><p>与大部分面向对象语言不同，ES6 之前并没有引入类（class）的概念，JavaScript 并非通过类而是直接通过构造函数来创建实例。</p>
+<h4 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h4><p>构造函数模式的目的就是为了创建一个自定义类，并且创建这个类的实例。构造函数模式中拥有了类和实例的概念，并且实例和实例之间是相互独立的，即实例识别。</p>
+<p>构造函数就是一个普通的函数，创建方式和普通函数没有区别，不同的是构造函数习惯上首字母大写。另外就是调用方式的不同，普通函数是直接调用，而<strong>构造函数需要使用 new 关键字来调用。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, gender</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">  <span class="keyword">this</span>.gender = gender;</span><br><span class="line">  <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> per = <span class="keyword">new</span> Person(<span class="string">'孙悟空'</span>, <span class="number">18</span>, <span class="string">'男'</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params">name, age, gender</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">  <span class="keyword">this</span>.gender = gender;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> dog = <span class="keyword">new</span> Dog(<span class="string">'旺财'</span>, <span class="number">4</span>, <span class="string">'雄'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(per); <span class="comment">//当我们直接在页面中打印一个对象时，事件上是输出的对象的toString()方法的返回值</span></span><br><span class="line"><span class="built_in">console</span>.log(dog);</span><br></pre></td></tr></table></figure>
+<p>每创建一个 Person 构造函数，在 Person 构造函数中，为每一个对象都添加了一个 sayName 方法，也就是说构造函数每执行一次就会创建一个新的 sayName 方法。这样就导致了构造函数执行一次就会创建一个新的方法。为什么不把这个方法单独放到一个地方，并让所有的实例都可以访问到呢?这就需要原型(prototype)</p>
+<h4 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h4><p>在 JavaScript 中，每当定义一个函数数据类型(普通函数、类)时候，都会天生自带一个 prototype 属性，这个属性指向函数的原型对象，并且这个属性是一个对象数据类型的值。<br><img src="前端基础汇总2/原型.png" alt="原型"><br>原型对象就相当于一个公共的区域，所有同一个类的实例都可以访问到这个原型对象，我们可以将对象中共有的内容，统一设置到原型对象中。</p>
+<h4 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h4><ol>
+<li><p>__proto__和 constructor<br>每一个对象数据类型(普通的对象、实例、prototype……)也天生自带一个属性__proto__，属性值是当前实例所属类的原型(prototype)。原型对象中有一个属性 constructor, 它指向函数对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="built_in">console</span>.log(person.__proto__ === Person.prototype); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(Person.prototype.constructor === Person); <span class="comment">//true</span></span><br><span class="line"><span class="comment">//顺便学习一个ES5的方法,可以获得对象的原型</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(person) === Person.prototype); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>何为原型链<br>在 JavaScript 中万物都是对象，对象和对象之间也有关系，并不是孤立存在的。对象之间的继承关系，在 JavaScript 中是通过 prototype 对象指向父类对象，直到指向 Object 对象为止，这样就形成了一个原型指向的链条，专业术语称之为原型链。</p>
+<p>当我们访问对象的一个属性或方法时，它会先在对象自身中寻找，如果有则直接使用，如果没有则会去原型对象中寻找，如果找到则直接使用。如果没有则去原型的原型中寻找,直到找到 Object 对象的原型，Object 对象的原型没有原型，如果在 Object 原型中依然没有找到，则返回 undefined。<br>使用对象的 hasOwnProperty()来检查对象自身中是否含有该属性；使用 in 检查对象中是否含有某个属性时，如果对象中没有但是原型中有，也会返回 true</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Person.prototype.a = <span class="number">123</span>;</span><br><span class="line">Person.prototype.sayHello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">'hello'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="built_in">console</span>.log(person.a); <span class="comment">//123</span></span><br><span class="line"><span class="built_in">console</span>.log(person.hasOwnProperty(<span class="string">'a'</span>)); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'a'</span> <span class="keyword">in</span> person); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p><strong>Object 是 JS 中所有对象数据类型的基类(最顶层的类)在 Object.prototype 上没有__proto__这个属性。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.__proto__ === <span class="literal">null</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p><img src="前端基础汇总2/原型链.png" alt="原型链"></p>
+</li>
+</ol>
+<h3 id="DOM-事件机制"><a href="#DOM-事件机制" class="headerlink" title="DOM 事件机制"></a><div align=center>DOM 事件机制</h3><h4 id="DOM-事件级别"><a href="#DOM-事件级别" class="headerlink" title="DOM 事件级别"></a>DOM 事件级别</h4><p>DOM 级别一共可以分为四个级别：DOM0 级、DOM1 级、DOM2 级和 DOM3 级。而<strong>DOM 事件分为 3 个级别：DOM 0 级事件处理，DOM 2 级事件处理和 DOM 3 级事件处理</strong>。由于 DOM 1 级中没有事件的相关内容，所以没有 DOM 1 级事件。</p>
+<ol>
+<li>DOM 0 级事件<br>el.onclick=function(){}<br><strong>当希望为同一个元素/标签绑定多个同类型事件的时候（如给上面的这个 btn 元素绑定 3 个点击事件），是不被允许的</strong>。DOM0 事件绑定，给元素的事件行为绑定方法，这些方法都是在当前元素事件行为的冒泡阶段(或者目标阶段)执行的。</li>
+<li>DOM 2 级事件<br>el.addEventListener(event-name, callback, useCapture)<ul>
+<li>event-name: 事件名称，可以是标准的 DOM 事件</li>
+<li>callback: 回调函数，当事件触发时，函数会被注入一个参数为当前的事件对象 event</li>
+<li>useCapture: 默认是 false，代表事件句柄在冒泡阶段执行</li>
+</ul>
+</li>
+<li>DOM 3 级事件<br>在 DOM 2 级事件的基础上添加了更多的事件类型。<ul>
+<li>UI 事件，当用户与页面上的元素交互时触发，如：load、scroll</li>
+<li>焦点事件，当元素获得或失去焦点时触发，如：blur、focus</li>
+<li>鼠标事件，当用户通过鼠标在页面执行操作时触发如：dblclick、mouseup</li>
+<li>滚轮事件，当使用鼠标滚轮或类似设备时触发，如：mousewheel</li>
+<li>文本事件，当在文档中输入文本时触发，如：textInput</li>
+<li>键盘事件，当用户通过键盘在页面上执行操作时触发，如：keydown、keypress</li>
+<li>合成事件，当为 IME（输入法编辑器）输入字符时触发，如：compositionstart</li>
+<li>变动事件，当底层 DOM 结构发生变化时触发，如：DOMsubtreeModified</li>
+<li>同时 DOM3 级事件也允许使用者自定义一些事件。</li>
+</ul>
+</li>
+</ol>
+<h4 id="DOM-事件模型和事件流"><a href="#DOM-事件模型和事件流" class="headerlink" title="DOM 事件模型和事件流"></a>DOM 事件模型和事件流</h4><p>DOM 事件模型分为捕获和冒泡。一个事件发生后，会在子元素和父元素之间传播（propagation）。这种传播分成三个阶段。</p>
+<ul>
+<li>捕获阶段：事件从 window 对象自上而下向目标节点传播的阶段；</li>
+<li>目标阶段：真正的目标节点正在处理事件的阶段；</li>
+<li>冒泡阶段：事件从目标节点自下而上向 window 对象传播的阶段；</li>
+</ul>
+<p>捕获是从上到下，事件先从 window 对象，然后再到 document（对象），然后是 html 标签（通过 document.documentElement 获取 html 标签），然后是 body 标签（通过 document.body 获取 body 标签），然后按照普通的 html 结构一层一层往下传，最后到达目标元素。</p>
+<p>而事件冒泡的流程刚好是事件捕获的逆过程。</p>
+<h4 id="事件代理-事件委托"><a href="#事件代理-事件委托" class="headerlink" title="事件代理(事件委托)"></a>事件代理(事件委托)</h4><p>由于事件会在冒泡阶段向上传播到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件。这种方法叫做事件的代理（delegation）。</p>
+<ol>
+<li>优点<ul>
+<li>减少内存消耗，提高性能</li>
+<li>动态绑定事件<br>用户操作动态的增删列表项元素，如果一开始给每个子元素绑定事件，那么在列表发生变化时，就需要重新给新增的元素绑定事件，给即将删去的元素解绑事件，如果用事件代理就会省去很多这样麻烦。</li>
+</ul>
+</li>
+<li>如何实现<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 给父层元素绑定事件</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'list'</span>).addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 兼容性处理</span></span><br><span class="line">  <span class="keyword">var</span> event = e || <span class="built_in">window</span>.event;</span><br><span class="line">  <span class="keyword">var</span> target = event.target || event.srcElement;</span><br><span class="line">  <span class="comment">// 判断是否匹配目标元素</span></span><br><span class="line">  <span class="keyword">if</span> (target.nodeName.toLocaleLowerCase === <span class="string">'li'</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'the content is: '</span>, target.innerHTML);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="Event-对象常见的应用"><a href="#Event-对象常见的应用" class="headerlink" title="Event 对象常见的应用"></a>Event 对象常见的应用</h4><ul>
+<li><p>event. preventDefault()<br><strong>如果调用这个方法，默认事件行为将不再触发</strong>。什么是默认事件呢？例如表单一点击提交按钮(submit)跳转页面、a 标签默认页面跳转或是锚点定位等。</p>
+<p>很多时候我们使用 a 标签仅仅是想当做一个普通的按钮，点击实现一个功能，不想页面跳转，也不想锚点定位。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方法一：</span></span><br><span class="line">&lt;a href=<span class="string">"javascript:;"</span>&gt;链接&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/方法二:</span></span><br><span class="line"><span class="regexp">&lt;a id="test" href="http:/</span><span class="regexp">/www.cnblogs.com"&gt;链接&lt;/</span>a&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">test.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    e = e || <span class="built_in">window</span>.event;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/方法三：</span></span><br><span class="line"><span class="regexp">&lt;a id="test" href="http:/</span><span class="regexp">/www.cnblogs.com"&gt;链接&lt;/</span>a&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">test.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    e = e || <span class="built_in">window</span>.event;</span><br><span class="line">    e.preventDefault();</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>event.stopPropagation() &amp; event.stopImmediatePropagation()<br>event.stopPropagation() 方法阻止事件冒泡到父元素，阻止任何父事件处理程序被执行。<br>stopImmediatePropagation 既能阻止事件向父元素冒泡，也能阻止元素同事件类型的其它监听器被触发。而 stopPropagation 只能实现前者的效果。</p>
+</li>
+<li>event.target &amp; event.currentTarget<br>event.currentTarget 始终是监听事件者，而 event.target 是事件的真正发出者。</li>
+</ul>
+<h3 id="JavaScript-常见的六种继承方式"><a href="#JavaScript-常见的六种继承方式" class="headerlink" title="JavaScript 常见的六种继承方式"></a><div align=center>JavaScript 常见的六种继承方式</h3><h4 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h4><p>子类型的原型为父类型的一个实例对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类型</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">  <span class="keyword">this</span>.play = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">  <span class="keyword">this</span>.setName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.setAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//子类型</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">price</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.price = price;</span><br><span class="line">  <span class="keyword">this</span>.setScore = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line">Student.prototype = <span class="keyword">new</span> Person(); <span class="comment">// 子类型的原型为父类型的一个实例对象</span></span><br><span class="line"><span class="keyword">var</span> s1 = <span class="keyword">new</span> Student(<span class="number">15000</span>);</span><br><span class="line"><span class="keyword">var</span> s2 = <span class="keyword">new</span> Student(<span class="number">14000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(s1, s2);</span><br></pre></td></tr></table></figure>
+<p>我们需要在子类中添加新的方法或者是重写父类的方法时候，切记一定要放到替换原型的语句之后</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.setAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'111'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">price</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.price = price;</span><br><span class="line">  <span class="keyword">this</span>.setScore = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Student.prototype.sayHello = function () &#123; &#125;//在这里写子类的原型方法和属性是无效的，</span></span><br><span class="line"><span class="comment">//因为会改变原型的指向，所以应该放到重新指定之后</span></span><br><span class="line">Student.prototype = <span class="keyword">new</span> Person();</span><br><span class="line">Student.prototype.sayHello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> s1 = <span class="keyword">new</span> Student(<span class="number">15000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(s1);</span><br></pre></td></tr></table></figure>
+<p>特点：</p>
+<ul>
+<li>父类新增原型方法/原型属性，子类都能访问到</li>
+<li>简单，易于实现</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>无法实现多继承</li>
+<li>来自原型对象的所有属性被所有实例共享</li>
+<li>创建子类实例时，无法向父类构造函数传参</li>
+<li>要想为子类新增属性和方法，必须要在 Student.prototype = new Person() 之后执行，不能放到构造器中</li>
+</ul>
+<h4 id="借用构造函数继承"><a href="#借用构造函数继承" class="headerlink" title="借用构造函数继承"></a>借用构造函数继承</h4><p>在子类型构造函数中通用 call()调用父类型构造函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">  <span class="keyword">this</span>.setName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.setAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">name, age, price</span>) </span>&#123;</span><br><span class="line">  Person.call(<span class="keyword">this</span>, name, age); <span class="comment">// 相当于: this.Person(name, age)</span></span><br><span class="line">  <span class="comment">/*this.name = name</span></span><br><span class="line"><span class="comment">    this.age = age*/</span></span><br><span class="line">  <span class="keyword">this</span>.price = price;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> s1 = <span class="keyword">new</span> Student(<span class="string">'Tom'</span>, <span class="number">20</span>, <span class="number">15000</span>);</span><br></pre></td></tr></table></figure>
+<p>这种方式只是实现部分的继承，如果父类的原型还有方法和属性，子类是拿不到这些方法和属性的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(s1.setAge()); <span class="comment">//Uncaught TypeError: s1.setAge is not a function</span></span><br></pre></td></tr></table></figure>
+<p>特点：</p>
+<ul>
+<li>解决了原型链继承中子类实例共享父类引用属性的问题</li>
+<li>创建子类实例时，可以向父类传递参数</li>
+<li>可以实现多继承(call 多个父类对象)</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>实例并不是父类的实例，只是子类的实例</li>
+<li>只能继承父类的实例属性和方法，不能继承原型属性和方法</li>
+<li>无法实现函数复用，每个子类都有父类实例函数的副本，影响性能</li>
+</ul>
+<h4 id="原型链-借用构造函数的组合继承"><a href="#原型链-借用构造函数的组合继承" class="headerlink" title="原型链+借用构造函数的组合继承"></a>原型链+借用构造函数的组合继承</h4><p>通过调用父类构造，继承父类的属性并保留传参的优点，然后通过将父类实例作为子类原型，实现函数复用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">  <span class="keyword">this</span>.setAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.setAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'111'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">name, age, price</span>) </span>&#123;</span><br><span class="line">  Person.call(<span class="keyword">this</span>, name, age);</span><br><span class="line">  <span class="keyword">this</span>.price = price;</span><br><span class="line">  <span class="keyword">this</span>.setScore = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line">Student.prototype = <span class="keyword">new</span> Person();</span><br><span class="line">Student.prototype.constructor = Student; <span class="comment">//组合继承也是需要修复构造函数指向的</span></span><br><span class="line">Student.prototype.sayHello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> s1 = <span class="keyword">new</span> Student(<span class="string">'Tom'</span>, <span class="number">20</span>, <span class="number">15000</span>);</span><br><span class="line"><span class="keyword">var</span> s2 = <span class="keyword">new</span> Student(<span class="string">'Jack'</span>, <span class="number">22</span>, <span class="number">14000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(s1);</span><br><span class="line"><span class="built_in">console</span>.log(s1.constructor); <span class="comment">//Student</span></span><br><span class="line"><span class="built_in">console</span>.log(p1.constructor); <span class="comment">//Person</span></span><br></pre></td></tr></table></figure>
+<p><img src="前端基础汇总2/组合继承结果.png" alt="组合继承结果"><br>优点：</p>
+<ul>
+<li>可以继承实例属性/方法，也可以继承原型属性/方法</li>
+<li>不存在引用属性共享问题</li>
+<li>可传参</li>
+<li>函数可复用</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>调用了两次父类构造函数，生成了两份实例</li>
+</ul>
+<h4 id="组合继承优化-1"><a href="#组合继承优化-1" class="headerlink" title="组合继承优化 1"></a>组合继承优化 1</h4><p>这种方式通过<strong>父类原型和子类原型指向同一对象</strong>，子类可以继承到父类的公有方法当做自己的公有方法，而且不会初始化两次实例方法/属性，避免的组合继承的缺点。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">  <span class="keyword">this</span>.setAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.setAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'111'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">name, age, price</span>) </span>&#123;</span><br><span class="line">  Person.call(<span class="keyword">this</span>, name, age);</span><br><span class="line">  <span class="keyword">this</span>.price = price;</span><br><span class="line">  <span class="keyword">this</span>.setScore = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line">Student.prototype = Person.prototype;</span><br><span class="line">Student.prototype.sayHello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> s1 = <span class="keyword">new</span> Student(<span class="string">'Tom'</span>, <span class="number">20</span>, <span class="number">15000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(s1);</span><br></pre></td></tr></table></figure>
+<p>优点：</p>
+<ul>
+<li>不会初始化两次实例方法/属性，避免的组合继承的缺点。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>没办法辨别是实例是子类还是父类创造的，子类和父类的构造函数指向是同一个。</li>
+</ul>
+<h4 id="组合继承优化-2"><a href="#组合继承优化-2" class="headerlink" title="组合继承优化 2"></a>组合继承优化 2</h4><p>借助原型可以基于已有的对象来创建对象，var B = Object.create(A)以 A 对象为原型，生成了 B 对象。B 继承了 A 的所有属性和方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.setAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'111'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">name, age, price</span>) </span>&#123;</span><br><span class="line">  Person.call(<span class="keyword">this</span>, name, age);</span><br><span class="line">  <span class="keyword">this</span>.price = price;</span><br><span class="line">  <span class="keyword">this</span>.setScore = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line">Student.prototype = <span class="built_in">Object</span>.create(Person.prototype); <span class="comment">//核心代码</span></span><br><span class="line">Student.prototype.constructor = Student; <span class="comment">//核心代码</span></span><br><span class="line"><span class="keyword">var</span> s1 = <span class="keyword">new</span> Student(<span class="string">'Tom'</span>, <span class="number">20</span>, <span class="number">15000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(s1 <span class="keyword">instanceof</span> Student, s1 <span class="keyword">instanceof</span> Person); <span class="comment">// true true</span></span><br><span class="line"><span class="built_in">console</span>.log(s1.constructor); <span class="comment">//Student</span></span><br><span class="line"><span class="built_in">console</span>.log(s1);</span><br></pre></td></tr></table></figure>
+<p>Student 继承了所有的 Person 原型对象的属性和方法。目前来说，最完美的继承方法！</p>
+<h4 id="ES6-中-class-的继承"><a href="#ES6-中-class-的继承" class="headerlink" title="ES6 中 class 的继承"></a>ES6 中 class 的继承</h4><p>ES6 中引入了 class 关键字，class 可以通过 extends 关键字实现继承，还可以通过 static 关键字定义类的静态方法,这比 ES5 的通过修改原型链实现继承，要清晰和方便很多。</p>
+<p>ES5 的继承，实质是先创造子类的实例对象 this，然后再将父类的方法添加到 this 上面（Parent.apply(this)）。ES6 的继承机制完全不同，实质是先将父类实例对象的属性和方法，加到 this 上面（所以必须先调用 super 方法），然后再用子类的构造函数修改 this。</p>
+<p><strong>注意：</strong> class 关键字只是原型的语法糖，JavaScript 继承仍然是基于原型实现的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="comment">//调用类的构造方法</span></span><br><span class="line">  <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//定义一般的方法</span></span><br><span class="line">  showName() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'调用父类的方法'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name, <span class="keyword">this</span>.age);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p1 = <span class="keyword">new</span> Person(<span class="string">'kobe'</span>, <span class="number">39</span>);</span><br><span class="line"><span class="built_in">console</span>.log(p1);</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义一个子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, age, salary) &#123;</span><br><span class="line">    <span class="keyword">super</span>(name, age); <span class="comment">//通过super调用父类的构造方法</span></span><br><span class="line">    <span class="keyword">this</span>.salary = salary;</span><br><span class="line">  &#125;</span><br><span class="line">  showName() &#123;</span><br><span class="line">    <span class="comment">//在子类自身定义方法</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'调用子类的方法'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name, <span class="keyword">this</span>.age, <span class="keyword">this</span>.salary);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> s1 = <span class="keyword">new</span> Student(<span class="string">'wade'</span>, <span class="number">38</span>, <span class="number">1000000000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(s1);</span><br><span class="line">s1.showName();</span><br></pre></td></tr></table></figure>
+<p><img src="前端基础汇总2/class继承.png" alt="class继承"><br>优点：</p>
+<ul>
+<li>语法简单易懂,操作更方便</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>并不是所有的浏览器都支持 class 关键字</li>
+</ul>
+<h3 id="JavaScript-线程机制与事件机制"><a href="#JavaScript-线程机制与事件机制" class="headerlink" title=" JavaScript 线程机制与事件机制"></a><div align=center> JavaScript 线程机制与事件机制</h3><p><img src="前端基础汇总2/线程事件机制.png" alt="线程事件机制"></p>
+<h4 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h4><ol>
+<li><p>进程<br>进程是指程序的一次执行,它占有一片独有的内存空间,可以通过 windows 任务管理器查看进程。同一个时间里，同一个计算机系统中允许两个或两个以上的进程处于并行状态，这是多进程。比如电脑同时运行微信，QQ，以及各种浏览器等。<strong>浏览器运行是有些是单进程，如 firefox 和老版 IE，有些是多进程，如 chrome 和新版 IE。</strong></p>
+</li>
+<li><p>线程<br>有些进程还不止同时干一件事，比如 Word，它可以同时进行打字、拼写检查、打印等事情。在一个进程内部，要同时干多件事，就需要同时运行多个“子任务”，我们把进程内的这些“子任务”称为线程（Thread）。<br><strong>线程是指 CPU 的基本调度单位,是程序执行的一个完整流程，是进程内的一个独立执行单元。</strong> 多线程是指在一个进程内, 同时有多个线程运行。<strong>浏览器运行是多线程</strong>。比如用浏览器一边下载，一边听歌，一边看视频。<br><strong>JavaScript 语言的一大特点就是单线程</strong>，为了利用多核 CPU 的计算能力，HTML5 提出 Web Worker 标准，允许 JavaScript 脚本创建多个线程，但是子线程完全受主线程控制，且不得操作 DOM。所以，这个新标准并没有改变 JavaScript 单线程的本质。<br><img src="前端基础汇总2/线程.png" alt="线程"></p>
+</li>
+<li><p>进程与线程</p>
+<ul>
+<li><p>应用程序必须运行在某个进程的某个线程上</p>
+</li>
+<li><p>一个进程中至少有一个运行的线程: 主线程, 进程启动后自动创建</p>
+</li>
+<li><p>一个进程中如果同时运行多个线程, 那这个程序是多线程运行的</p>
+</li>
+<li><p>一个进程的内存空间是共享的，每个线程都可以使用这些共享内存。</p>
+</li>
+<li><p>多个进程之间的数据是不能直接共享的</p>
+</li>
+</ul>
+</li>
+<li><p>单线程与多线程的优缺点?<br>单线程的优点:顺序编程简单易懂</p>
+<p>单线程的缺点:效率低</p>
+<p>多线程的优点:能有效提升 CPU 的利用率</p>
+<p>多线程的缺点:</p>
+<ul>
+<li>创建多线程开销</li>
+<li>线程间切换开销</li>
+<li>死锁与状态同步问题</li>
+</ul>
+</li>
+</ol>
+<h4 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h4><p>浏览器的内核是指支持浏览器运行的最核心的程序，分为两个部分的，一是渲染引擎，另一个是 JS 引擎。现在 JS 引擎比较独立，内核更加倾向于说渲染引擎。</p>
+<ol>
+<li>不同的浏览器可能不太一样<ul>
+<li>Chrome(以前), Safari: webkit</li>
+<li>chrome(现在): blink</li>
+<li>firefox: Gecko</li>
+<li>IE: Trident</li>
+<li>360,搜狗等国内浏览器: Trident + webkit</li>
+</ul>
+</li>
+<li>内核由很多模块组成<ul>
+<li>html,css 文档解析模块 : 负责页面文本的解析</li>
+<li>dom/css 模块 : 负责 dom/css 在内存中的相关处理</li>
+<li>布局和渲染模块 : 负责页面的布局和效果的绘制</li>
+<li>定时器模块 : 负责定时器的管理</li>
+<li>网络请求模块 : 负责服务器请求(常规/Ajax)</li>
+<li>事件响应模块 : 负责事件的管理</li>
+</ul>
+</li>
+</ol>
+<h4 id="定时器引发的思考"><a href="#定时器引发的思考" class="headerlink" title="定时器引发的思考"></a>定时器引发的思考</h4><ol>
+<li><p>定时器真是定时执行的吗?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> start = <span class="built_in">Date</span>.now();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'启动定时器前...'</span>);</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'定时器执行了'</span>, <span class="built_in">Date</span>.now() - start);</span><br><span class="line">  &#125;, <span class="number">200</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'启动定时器后...'</span>);</span><br><span class="line">  <span class="comment">// 做一个长时间的工作</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000000000</span>; i++) &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><img src="前端基础汇总2/定时器.png" alt="定时器"><br>定时器并不能保证真正定时执行，一般会延迟一丁点,也有可能延迟很长时间</p>
+</li>
+<li>定时器回调函数是在分线程执行的吗?<br><strong>定时器回调函数在主线程执行的</strong></li>
+</ol>
+<h4 id="浏览器的事件循环-轮询-模型"><a href="#浏览器的事件循环-轮询-模型" class="headerlink" title="浏览器的事件循环(轮询)模型"></a>浏览器的事件循环(轮询)模型</h4><ol>
+<li><p>为什么 JavaScript 是单线程<br>JavaScript 的单线程，与它的用途有关。作为浏览器脚本语言，JavaScript 的主要用途是与用户互动，以及操作 DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定 JavaScript 同时有两个线程，一个线程在某个 DOM 节点上添加内容，另一个线程删除了这个节点，这时浏览器应该以哪个线程为准？</p>
+<p>所以，为了避免复杂性，从一诞生，JavaScript 就是单线程，这已经成了这门语言的核心特征，将来也不会改变。<br>为了利用多核 CPU 的计算能力，HTML5 提出 Web Worker 标准，允许 JavaScript 脚本创建多个线程，但是子线程完全受主线程控制，且不得操作 DOM。所以，这个新标准并没有改变 JavaScript 单线程的本质。</p>
+</li>
+<li><p>Event Loop<br>JavaScript 中所有任务可以分成两种，一种是同步任务，另一种是异步任务(如各种浏览器事件、定时器和 Ajax 等)。<br><strong>同步任务指的是，在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务；异步任务指的是，不进入主线程、而进入”任务队列”（task queue）的任务，只有”任务队列”通知主线程，某个异步任务可以执行了，该任务才会进入主线程执行。</strong><br>异步执行的运行机制如下：</p>
+<ul>
+<li>所有同步任务都在主线程上执行，形成一个执行栈（execution context stack）。</li>
+<li>主线程之外，还存在一个”任务队列”（task queue）。只要异步任务有了运行结果，就在”任务队列”之中放置一个事件。</li>
+<li>一旦”执行栈”中的所有同步任务执行完毕，系统就会读取”任务队列”，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行。</li>
+<li>主线程不断重复上面的第三步<br><strong>主线程从”任务队列”中读取事件，这个过程是循环不断的，所以整个的这种运行机制又称为 Event Loop（事件循环）</strong></li>
+</ul>
+</li>
+</ol>
+<h4 id="H5-Web-Workers-多线程"><a href="#H5-Web-Workers-多线程" class="headerlink" title="H5 Web Workers(多线程)"></a>H5 Web Workers(多线程)</h4><ol>
+<li><p>Web Workers 的作用<br>当一个页面加载一个复杂运算的 js 文件时，用户界面可能会短暂地“冻结”，不能再做其他操作。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">"text"</span> placeholder=<span class="string">"数值"</span> id=<span class="string">"number"</span>&gt;</span><br><span class="line">&lt;button id=<span class="string">"btn"</span>&gt;计算&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">  // 1 1 2 3 5 8    f(n) = f(n-1) + f(n-2)</span></span><br><span class="line"><span class="string">  function fibonacci(n) &#123;</span></span><br><span class="line"><span class="string">    return n&lt;=2 ? 1 : fibonacci(n-1) + fibonacci(n-2)  //递归调用</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">  var input = document.getElementById('number')</span></span><br><span class="line"><span class="string">  document.getElementById('btn').onclick = function () &#123;</span></span><br><span class="line"><span class="string">    var number = input.value;</span></span><br><span class="line"><span class="string">    var result = fibonacci(number);</span></span><br><span class="line"><span class="string">    alert(result);</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="前端基础汇总2/计算阻塞.gif" alt="计算阻塞"><br><strong>Web Worker 的作用，就是为 JavaScript 创造多线程环境，允许主线程创建 Worker 线程，将一些任务分配给后者运行。在主线程运行的同时，Worker 线程在后台运行，两者互不干扰。等到 Worker 线程完成计算任务，再把结果返回给主线程。</strong><br>这样的好处是，一些计算密集型或高延迟的任务，被 Worker 线程负担了，主线程（通常负责 UI 交互）就会很流畅，不会被阻塞或拖慢。其原理图如下：<br><img src="前端基础汇总2/webworkers原理图.png" alt="webworkers原理图"></p>
+</li>
+<li>Web Workers 的基本使用<br><strong>主线程</strong></li>
+</ol>
+<ul>
+<li><p>首先主线程采用 new 命令，调用 Worker()构造函数，新建一个 Worker 线程</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> worker = <span class="keyword">new</span> Worker(<span class="string">'work.js'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后主线程调用 worker.postMessage()方法，向 Worker 发消息。</p>
+</li>
+<li><p>接着，主线程通过 worker.onmessage 指定监听函数，接收子线程发回来的消息。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> input = <span class="built_in">document</span>.getElementById(<span class="string">'number'</span>);</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> number = input.value;</span><br><span class="line">  <span class="comment">//创建一个Worker对象</span></span><br><span class="line">  <span class="keyword">var</span> worker = <span class="keyword">new</span> Worker(<span class="string">'worker.js'</span>);</span><br><span class="line">  <span class="comment">// 绑定接收消息的监听</span></span><br><span class="line">  worker.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'主线程接收分线程返回的数据: '</span> + event.data);</span><br><span class="line">    alert(event.data);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// 向分线程发送消息</span></span><br><span class="line">  worker.postMessage(number);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'主线程向分线程发送数据: '</span> + number);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">// window</span></span><br></pre></td></tr></table></figure>
+<p><strong>Worker 线程</strong></p>
+</li>
+<li><p>Worker 线程内部需要有一个监听函数，监听message事件。</p>
+</li>
+<li>通过 postMessage(data) 方法来向主线程发送数据。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//worker.js文件</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fibonacci</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> n&lt;=<span class="number">2</span> ? <span class="number">1</span> : fibonacci(n<span class="number">-1</span>) + fibonacci(n<span class="number">-2</span>)  <span class="comment">//递归调用</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>)<span class="comment">//[object DedicatedWorkerGlobalScope]</span></span><br><span class="line"><span class="keyword">this</span>.onmessage = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> number = event.data</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'分线程接收到主线程发送的数据: '</span>+number)</span><br><span class="line">  <span class="comment">//计算</span></span><br><span class="line">  <span class="keyword">var</span> result = fibonacci(number)</span><br><span class="line">  postMessage(result)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'分线程向主线程返回数据: '</span>+result)</span><br><span class="line">  <span class="comment">// alert(result)  alert是window的方法, 在分线程不能调用</span></span><br><span class="line">  <span class="comment">// 分线程中的全局对象不再是window, 所以在分线程中不可能更新界面</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="3">
+<li>Web Workers的缺点<ul>
+<li>不能跨域加载JS</li>
+<li>worker内代码不能访问DOM(更新UI)</li>
+<li>不是每个浏览器都支持这个新特性(本文例子只能在Firefox浏览器上运行，chrome不支持)</li>
+</ul>
+</li>
+</ol>
+<h3 id="浏览器与Node的事件循环"><a href="#浏览器与Node的事件循环" class="headerlink" title=" 浏览器与Node的事件循环"></a><div align=center> 浏览器与Node的事件循环</h3></script></li></ul>
       
     </div>
 
