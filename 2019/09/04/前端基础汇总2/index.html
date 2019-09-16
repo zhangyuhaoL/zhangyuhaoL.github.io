@@ -106,7 +106,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://zhangyuhaol.github.io/2019/09/04/前端基础汇总2/前端模块化.png">
 <meta property="og:image" content="https://zhangyuhaol.github.io/2019/09/04/前端基础汇总2/XXX">
-<meta property="og:updated_time" content="2019-09-10T10:05:16.913Z">
+<meta property="og:updated_time" content="2019-09-12T01:39:41.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端基础知识汇总（Javascript）">
 <meta name="twitter:description" content="来源：浪里行舟 前端模块化详解 在 JavaScript 发展初期就是为了实现简单的页面交互逻辑，寥寥数语即可；如今 CPU、浏览器性能得到了极大的提升，很多页面逻辑迁移到了客户端（表单验证等），随着 web2.0 时代的到来，Ajax 技术得到广泛应用，jQuery 等前端库层出不穷，前端代码日益膨胀，此时在 JS 方面就会考虑使用模块化规范去管理。 模块化的理解 什么是模块   将一个复杂的程">
@@ -408,7 +408,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-10 18:05:16" itemprop="dateModified" datetime="2019-09-10T18:05:16+08:00">2019-09-10</time>
+                <time title="修改时间：2019-09-12 09:39:41" itemprop="dateModified" datetime="2019-09-12T09:39:41+08:00">2019-09-12</time>
               
             
           </span>
@@ -1346,7 +1346,219 @@
 </ul>
 </li>
 </ol>
-<h3 id="浏览器与Node的事件循环"><a href="#浏览器与Node的事件循环" class="headerlink" title=" 浏览器与Node的事件循环"></a><div align=center> 浏览器与Node的事件循环</h3></script></li></ul>
+<h3 id="浏览器与Node的事件循环"><a href="#浏览器与Node的事件循环" class="headerlink" title=" 浏览器与Node的事件循环"></a><div align=center> 浏览器与Node的事件循环</h3><h4 id="线程与进程"><a href="#线程与进程" class="headerlink" title="线程与进程"></a>线程与进程</h4><ol>
+<li>概念<br>进程是 CPU资源分配的最小单位；线程是 CPU调度的最小单位。<br><img src="前端基础汇总2/进程与线程.png" alt="进程与线程"><ul>
+<li>进程好比图中的工厂，有单独的专属自己的工厂资源。</li>
+<li>线程好比图中的工人，多个工人在一个工厂中协作工作，工厂与工人是 1:n的关系。也就是说一个进程由一个或多个线程组成，线程是一个进程中代码的不同执行路线；</li>
+<li>工厂的空间是工人们共享的，这象征一个进程的内存空间是共享的，每个线程都可用这些共享内存。</li>
+<li>多个工厂之间独立存在。</li>
+</ul>
+</li>
+<li>多进程与多线程<ul>
+<li>多进程：在同一个时间里，同一个计算机系统中允许两个或两个以上的进程处于运行状态。多进程带来的好处是明显的，比如你可以听歌的同时，打开编辑器敲代码，编辑器和听歌软件的进程之间丝毫不会相互干扰。</li>
+<li>多线程：程序中包含多个执行流，即在一个程序中可以同时运行多个不同的线程来执行不同的任务，也就是说允许单个程序创建多个并行执行的线程来完成各自的任务。</li>
+</ul>
+</li>
+</ol>
+<p>以Chrome浏览器中为例，当你打开一个 Tab 页时，其实就是创建了一个进程，一个进程中可以有多个线程（下文会详细介绍），比如渲染线程、JS 引擎线程、HTTP 请求线程等等。当你发起一个请求时，其实就是创建了一个线程，当请求结束后，该线程可能就会被销毁。</p>
+<h4 id="浏览器内核-1"><a href="#浏览器内核-1" class="headerlink" title="浏览器内核"></a>浏览器内核</h4><p>简单来说浏览器内核是通过取得页面内容、整理信息（应用CSS）、计算和组合最终输出可视化的图像结果，通常也被称为渲染引擎。</p>
+<p>浏览器内核是多线程，在内核控制下各线程相互配合以保持同步，一个浏览器通常由以下常驻线程组成：</p>
+<ul>
+<li>GUI 渲染线程</li>
+<li>JavaScript引擎线程</li>
+<li>定时触发器线程</li>
+<li>事件触发线程</li>
+<li>异步http请求线程</li>
+</ul>
+<ol>
+<li><p>GUI渲染线程</p>
+<ul>
+<li>主要负责页面的渲染，解析HTML、CSS，构建DOM树，布局和绘制等。</li>
+<li>当界面需要重绘或者由于某种操作引发回流时，将执行该线程。</li>
+<li>该线程与JS引擎线程互斥，当执行JS引擎线程时，GUI渲染会被挂起，当任务队列空闲时，主线程才会去执行GUI渲染。</li>
+</ul>
+</li>
+<li><p>JS引擎线程</p>
+<ul>
+<li>该线程当然是主要负责处理 JavaScript脚本，执行代码。</li>
+<li>也是主要负责执行准备好待执行的事件，即定时器计数结束，或者异步请求成功并正确返回时，将依次进入任务队列，等待 JS引擎线程的执行。</li>
+<li>当然，该线程与 GUI渲染线程互斥，当 JS引擎线程执行 JavaScript脚本时间过长，将导致页面渲染的阻塞。</li>
+</ul>
+</li>
+<li><p>定时器触发线程</p>
+<ul>
+<li>负责执行异步定时器一类的函数的线程，如： setTimeout，setInterval。</li>
+<li>主线程依次执行代码时，遇到定时器，会将定时器交给该线程处理，当计数完毕后，<strong>事件触发线程</strong>会将计数完毕后的事件加入到任务队列的尾部，等待JS引擎线程执行。</li>
+</ul>
+</li>
+<li><p>事件触发线程</p>
+<ul>
+<li>主要负责将准备好的事件交给 JS引擎线程执行。<br>比如 setTimeout定时器计数结束， ajax等异步请求成功并触发回调函数，或者用户触发点击事件时，该线程会将整装待发的事件依次加入到任务队列的队尾，等待 JS引擎线程的执行。</li>
+</ul>
+</li>
+<li><p>异步http请求线程</p>
+<ul>
+<li>负责执行异步请求一类的函数的线程，如： Promise，axios，ajax等。</li>
+<li>主线程依次执行代码时，遇到异步请求，会将函数交给该线程处理，当监听到状态码变更，如果有回调函数，<strong>事件触发线程</strong>会将回调函数加入到任务队列的尾部，等待JS引擎线程执行。</li>
+</ul>
+</li>
+</ol>
+<h4 id="浏览器中的-Event-Loop"><a href="#浏览器中的-Event-Loop" class="headerlink" title="浏览器中的 Event Loop"></a>浏览器中的 Event Loop</h4><ol>
+<li><p>Micro-Task 与 Macro-Task<br>览器端事件循环中的异步队列有两种：macro（宏任务）队列和 micro（微任务）队列。<strong>宏任务队列可以有多个，微任务队列只有一个</strong>。</p>
+<ul>
+<li>常见的 macro-task 比如：setTimeout、setInterval、script（整体代码）、 I/O 操作、UI 渲染等。</li>
+<li>常见的 micro-task 比如: new Promise().then(回调)、MutationObserver(html5新特性) 等。</li>
+</ul>
+</li>
+<li><p>Event Loop 过程解析</p>
+<ul>
+<li>一开始执行栈空,我们可以把执行栈认为是一个存储函数调用的栈结构，遵循先进后出的原则。micro 队列空，macro 队列里有且只有一个 script 脚本（整体代码）。</li>
+<li>全局上下文（script 标签）被推入执行栈，同步代码执行。在执行的过程中，会判断是同步任务还是异步任务，通过对一些接口的调用，可以产生新的 macro-task 与 micro-task，它们会分别被推入各自的任务队列里。同步代码执行完了，script 脚本会被移出 macro 队列，这个过程本质上是队列的 macro-task 的执行和出队的过程。</li>
+<li>上一步我们出队的是一个 macro-task，这一步我们处理的是 micro-task。但需要注意的是：当 macro-task 出队时，任务是一个一个执行的；而 micro-task 出队时，任务是一队一队执行的。因此，我们处理 micro 队列这一步，会逐个执行队列中的任务并把它出队，直到队列被清空。</li>
+<li>执行渲染操作，更新界面</li>
+<li>检查是否存在 Web worker 任务，如果有，则对其进行处理</li>
+<li>上述过程循环往复，直到两个队列都清空<br>当某个宏任务执行完后,会查看是否有微任务队列。<strong>如果有，先执行微任务队列中的所有任务，如果没有，会读取宏任务队列中排在最前的任务，执行宏任务的过程中，遇到微任务，依次加入微任务队列</strong>。栈空后，再次读取微任务队列里的任务，依次类推。</li>
+</ul>
+</li>
+</ol>
+<h4 id="Node-中的-Event-Loop"><a href="#Node-中的-Event-Loop" class="headerlink" title="Node 中的 Event Loop"></a>Node 中的 Event Loop</h4><ol>
+<li>Node简介<br>Node 中的 Event Loop 和浏览器中的是完全不相同的东西。Node.js采用V8作为js的解析引擎，而I/O处理方面使用了自己设计的libuv，libuv是一个基于事件驱动的跨平台抽象层，封装了不同操作系统一些底层特性，对外提供统一的API，事件循环机制也是它里面的实现<br><img src="前端基础汇总2/node事件.png" alt="node"><br>Node.js的运行机制如下:</li>
+</ol>
+<ul>
+<li>V8引擎解析JavaScript脚本。</li>
+<li>解析后的代码，调用Node API。</li>
+<li>libuv库负责Node API的执行。它将不同的任务分配给不同的线程，形成一个Event Loop（事件循环），以异步的方式将任务的执行结果返回给V8引擎。</li>
+<li>V8引擎再将结果返回给用户。</li>
+</ul>
+<ol start="2">
+<li>六个阶段<br>其中libuv引擎中的事件循环分为 6 个阶段，它们会按照顺序反复运行。每当进入某一个阶段的时候，都会从对应的回调队列中取出函数去执行。当队列为空或者执行的回调函数数量到达系统设定的阈值，就会进入下一阶段。<br><img src="前端基础汇总2/node的六个阶段.png" alt="node的六个阶段"><br>外部输入数据–&gt;轮询阶段(poll)–&gt;检查阶段(check)–&gt;关闭事件回调阶段(close callback)–&gt;定时器检测阶段(timer)–&gt;I/O事件回调阶段(I/O callbacks)–&gt;闲置阶段(idle, prepare)–&gt;轮询阶段（按照该顺序反复运行）</li>
+</ol>
+<ul>
+<li>timers 阶段：这个阶段执行timer（setTimeout、setInterval）的回调</li>
+<li>I/O callbacks 阶段：处理一些上一轮循环中的少数未执行的 I/O 回调</li>
+<li>idle, prepare 阶段：仅node内部使用</li>
+<li>poll 阶段：获取新的I/O事件, 适当的条件下node将阻塞在这里</li>
+<li>check 阶段：执行 setImmediate() 的回调</li>
+<li>close callbacks 阶段：执行 socket 的 close 事件回调</li>
+</ul>
+<h3 id="JavaScript中的垃圾回收和内存泄漏"><a href="#JavaScript中的垃圾回收和内存泄漏" class="headerlink" title=" JavaScript中的垃圾回收和内存泄漏"></a><div align=center> JavaScript中的垃圾回收和内存泄漏</h3><h4 id="垃圾回收的必要性"><a href="#垃圾回收的必要性" class="headerlink" title="垃圾回收的必要性"></a>垃圾回收的必要性</h4><p>由于字符串、对象和数组没有固定大小，所有当他们的大小已知时，才能对他们进行动态的存储分配。JavaScript程序每次创建字符串、数组或对象时，解释器都必须分配内存来存储那个实体。只要像这样动态地分配了内存，最终都要释放这些内存以便他们能够被再用，否则，JavaScript的解释器将会消耗完系统中所有可用的内存，造成系统崩溃。</p>
+<p>JavaScript垃圾回收的机制很简单：找出不再使用的变量，然后释放掉其占用的内存，但是这个过程不是时时的，因为其开销比较大，所以垃圾回收器会按照固定的时间间隔周期性的执行。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"浪里行舟"</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="string">"前端工匠"</span>;</span><br><span class="line"><span class="keyword">var</span> a = b; <span class="comment">//重写a</span></span><br></pre></td></tr></table></figure></p>
+<p>这段代码运行之后，“浪里行舟”这个字符串失去了引用（之前是被a引用），系统检测到这个事实之后，就会释放该字符串的存储空间以便这些空间可以被再利用。</p>
+<h4 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h4><p>垃圾回收有两种方法：标记清除、引用计数。引用计数不太常用，标记清除较为常用。</p>
+<ol>
+<li><p>标记清除<br><strong>这是javascript中最常用的垃圾回收方式</strong>。当变量进入执行环境是，就标记这个变量为“进入环境”。从逻辑上讲，永远不能释放进入环境的变量所占用的内存，因为只要执行流进入相应的环境，就可能会用到他们。当变量离开环境时，则将其标记为“离开环境”。</p>
+<p>垃圾收集器在运行的时候会给存储在内存中的所有变量都加上标记。然后，它会去掉环境中的变量以及被环境中的变量引用的标记。而在此之后再被加上标记的变量将被视为准备删除的变量，原因是环境中的变量已经无法访问到这些变量了。最后。垃圾收集器完成内存清除工作，销毁那些带标记的值，并回收他们所占用的内存空间。<br><img src="前端基础汇总2/标记清除.gif" alt="标记清除"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> m = <span class="number">0</span>,n = <span class="number">19</span> <span class="comment">// 把 m,n,add() 标记为进入环境。</span></span><br><span class="line">add(m, n) <span class="comment">// 把 a, b, c标记为进入环境。</span></span><br><span class="line"><span class="built_in">console</span>.log(n) <span class="comment">// a,b,c标记为离开环境，等待垃圾回收。</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  a++</span><br><span class="line">  <span class="keyword">var</span> c = a + b</span><br><span class="line">  <span class="keyword">return</span> c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引用计数<br>所谓”引用计数”是指语言引擎有一张”引用表”，保存了内存里面所有的资源（通常是各种值）的引用次数。如果一个值的引用次数是0，就表示这个值不再用到了，因此可以将这块内存释放。</p>
+<p>但是引用计数有个最大的问题： 循环引用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> obj1 = &#123;&#125;;</span><br><span class="line">    <span class="keyword">let</span> obj2 = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    obj1.a = obj2; <span class="comment">// obj1 引用 obj2</span></span><br><span class="line">    obj2.a = obj1; <span class="comment">// obj2 引用 obj1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当函数 func 执行结束后，返回值为 undefined，所以整个函数以及内部的变量都应该被回收，但根据引用计数方法，obj1 和 obj2 的引用次数都不为 0，所以他们不会被回收。<br>要解决循环引用的问题，最好是在不使用它们的时候手工将它们设为空。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">obj1 = <span class="literal">null</span>;</span><br><span class="line">obj2 = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="哪些情况会引起内存泄漏"><a href="#哪些情况会引起内存泄漏" class="headerlink" title="哪些情况会引起内存泄漏"></a>哪些情况会引起内存泄漏</h4><p>虽然JavaScript会自动垃圾收集，但是如果我们的代码写法不当，会让变量一直处于“进入环境”的状态，无法被回收。</p>
+<ol>
+<li><p>意外的全局变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">  bar = <span class="string">"this is a hidden global variable"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//另一种意外的全局变量可能由 this 创建:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.variable = <span class="string">"potential accidental global"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// foo 调用自己，this 指向了全局对象（window）</span></span><br><span class="line">foo();</span><br></pre></td></tr></table></figure>
+<p>bar没被声明,会变成一个全局变量,在页面关闭之前不会被释放。<br>在 JavaScript 文件头部加上 ‘use strict’，可以避免此类错误发生。启用严格模式解析 JavaScript ，避免意外的全局变量。</p>
+</li>
+<li><p>被遗忘的计时器或回调函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> someResource = getData();</span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> node = <span class="built_in">document</span>.getElementById(<span class="string">'Node'</span>);</span><br><span class="line">    <span class="keyword">if</span>(node) &#123;</span><br><span class="line">        <span class="comment">// 处理 node 和 someResource</span></span><br><span class="line">        node.innerHTML = <span class="built_in">JSON</span>.stringify(someResource));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<p>这样的代码很常见，如果id为Node的元素从DOM中移除，该定时器仍会存在，同时，因为回调函数中包含对someResource的引用，定时器外面的someResource也不会被释放。</p>
+</li>
+<li><p>闭包</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindEvent</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> obj = <span class="built_in">document</span>.createElement(<span class="string">'xxx'</span>);</span><br><span class="line">  obj.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// Even if it is a empty function</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>闭包可以维持函数内局部变量，使其得不到释放。上例定义事件回调时，由于是函数内定义函数，并且内部函数–事件回调引用外部函数，形成了闭包。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将事件处理函数定义在外面</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindEvent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> obj = <span class="built_in">document</span>.createElement(<span class="string">'xxx'</span>);</span><br><span class="line">  obj.onclick = onclickHandler;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或者在定义事件处理函数的外部函数中，删除对dom的引用</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindEvent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> obj = <span class="built_in">document</span>.createElement(<span class="string">'xxx'</span>);</span><br><span class="line">  obj.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Even if it is a empty function</span></span><br><span class="line">  &#125;;</span><br><span class="line">  obj = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解决之道，将事件处理函数定义在外部，解除闭包，或者在定义事件处理函数的外部函数中，删除对dom的引用。</p>
+</li>
+<li><p>没有清理的DOM元素引用<br>有时，保存 DOM 节点内部数据结构很有用。假如你想快速更新表格的几行内容，把每一行 DOM 存成字典（JSON 键值对）或者数组很有意义。此时，同样的 DOM 元素存在两个引用：一个在 DOM 树中，另一个在字典中。将来你决定删除这些行时，需要把两个引用都清除。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elements = &#123;</span><br><span class="line">  button: <span class="built_in">document</span>.getElementById(<span class="string">'button'</span>),</span><br><span class="line">  image: <span class="built_in">document</span>.getElementById(<span class="string">'image'</span>),</span><br><span class="line">  text: <span class="built_in">document</span>.getElementById(<span class="string">'text'</span>)</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doStuff</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  image.src = <span class="string">'http://some.url/image'</span>;</span><br><span class="line">  button.click();</span><br><span class="line">  <span class="built_in">console</span>.log(text.innerHTML);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeButton</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.body.removeChild(<span class="built_in">document</span>.getElementById(<span class="string">'button'</span>));</span><br><span class="line">  <span class="comment">// 此时，仍旧存在一个全局的 #button 的引用</span></span><br><span class="line">  <span class="comment">// elements 字典。button 元素仍旧在内存中，不能被 GC 回收。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>虽然我们用removeChild移除了button，但是还在elements对象里保存着#button的引用，换言之，DOM元素还在内存里面。</p>
+</li>
+</ol>
+<h4 id="内存泄漏的识别方法"><a href="#内存泄漏的识别方法" class="headerlink" title="内存泄漏的识别方法"></a>内存泄漏的识别方法</h4><p><img src="前端基础汇总2/识别内存泄漏.png" alt="识别内存泄漏"></p>
+<ul>
+<li>打开开发者工具 Performance</li>
+<li>勾选 Screenshots 和 memory</li>
+<li>左上角小圆点开始录制(record)</li>
+<li>停止录制</li>
+</ul>
+<p>Heap 对应的部分就可以看到内存在周期性的回落也可以看到垃圾回收的周期,如果垃圾回收之后的最低值(我们称为min),min在不断上涨,那么肯定是有较为严重的内存泄漏问题。</p>
+<p>避免内存泄漏的一些方式：</p>
+<ul>
+<li>减少不必要的全局变量，或者生命周期较长的对象，及时对无用的数据进行垃圾回收</li>
+<li>注意程序逻辑，避免“死循环”之类的</li>
+<li>避免创建过多的对象</li>
+</ul>
+<h4 id="垃圾回收的使用场景优化"><a href="#垃圾回收的使用场景优化" class="headerlink" title="垃圾回收的使用场景优化"></a>垃圾回收的使用场景优化</h4><ol>
+<li><p>数组array优化<br>将[]赋值给一个数组对象，是清空数组的捷径(例如： arr = [];),但是需要注意的是，这种方式又创建了一个新的空对象，并且将原来的数组对象变成了一小片内存垃圾！实际上，将数组长度赋值为0（arr.length = 0）也能达到清空数组的目的，并且同时能实现数组重用，减少内存垃圾的产生。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'浪里行舟'</span>);</span><br><span class="line">arr.length = <span class="number">0</span>  <span class="comment">// 可以直接让数字清空，而且数组类型不变。</span></span><br><span class="line"><span class="comment">// arr = []; 虽然让a变量成一个空数组,但是在堆上重新申请了一个空数组对象。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对象尽量复用<br>对象尽量复用，尤其是在循环等地方出现创建新对象，能复用就复用。不用的对象，尽可能设置为null，尽快被垃圾回收掉。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> t = &#123;&#125; <span class="comment">// 每次循环都会创建一个新对象。</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  <span class="comment">// var t = &#123;&#125;;// 每次循环都会创建一个新对象。</span></span><br><span class="line">  t.age = <span class="number">19</span></span><br><span class="line">  t.name = <span class="string">'123'</span></span><br><span class="line">  t.index = i</span><br><span class="line">  <span class="built_in">console</span>.log(t)</span><br><span class="line">&#125;</span><br><span class="line">t = <span class="literal">null</span> <span class="comment">//对象如果已经不用了，那就立即设置为null；等待垃圾回收。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在循环中的函数表达式，能复用最好放到循环外面。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在循环中最好也别使用函数表达式。</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>; k &lt; <span class="number">10</span>; k++) &#123;</span><br><span class="line">  <span class="keyword">var</span> t = <span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 创建了10次  函数对象。</span></span><br><span class="line">    <span class="built_in">console</span>.log(a)</span><br><span class="line">  &#125;</span><br><span class="line">  t(k)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 推荐用法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">t</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>; k &lt; <span class="number">10</span>; k++) &#123;</span><br><span class="line">  t(k)</span><br><span class="line">&#125;</span><br><span class="line">t = <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="JavaScript-函数式编程"><a href="#JavaScript-函数式编程" class="headerlink" title=" JavaScript 函数式编程"></a><div align=center> JavaScript 函数式编程</h3><h4 id="什么是函数式编程"><a href="#什么是函数式编程" class="headerlink" title="什么是函数式编程"></a>什么是函数式编程</h4><p>函数式编程是一种编程范式，主要是利用函数把运算过程封装起来，通过组合各种函数来计算结果。函数式编程意味着你可以在更短的时间内编写具有更少错误的代码。</p>
+<p>举个简单的例子，假设我们要把字符串 functional programming is great 变成每个单词首字母大写，我们可以这样实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> string = <span class="string">'functional programming is great'</span>;</span><br><span class="line"><span class="keyword">var</span> result = string</span><br><span class="line">  .split(<span class="string">' '</span>)</span><br><span class="line">  .map(<span class="function"><span class="params">v</span> =&gt;</span> v.slice(<span class="number">0</span>, <span class="number">1</span>).toUpperCase() + v.slice(<span class="number">1</span>))</span><br><span class="line">  .join(<span class="string">' '</span>);</span><br></pre></td></tr></table></figure>
+<p>整个过程就是 join(map(split(str))),体现了函数式编程的核心思想： <strong>通过函数对数据进行转换</strong>。<br>由此我们可以得到，函数式编程有两个基本特点：</p>
+<ul>
+<li>通过函数来对数据进行转换</li>
+<li>通过串联多个函数来求结果</li>
+</ul>
+<h4 id="对比声明式与命令式"><a href="#对比声明式与命令式" class="headerlink" title="对比声明式与命令式"></a>对比声明式与命令式</h4><ul>
+<li>命令式：我们通过编写一条又一条指令去让计算机执行一些动作，这其中一般都会涉及到很多繁杂的细节。命令式代码中频繁使用语句,来完成某个行为。比如 for、if、switch、throw 等这些语句。</li>
+<li>声明式：我们通过写表达式的方式来声明我们想干什么，而不是通过一步一步的指示。表达式通常是某些函数调用的复合、一些值和操作符，用来计算出结果值。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//命令式</span></span><br><span class="line"><span class="keyword">var</span> CEOs = [];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; companies.length; i++)&#123;</span><br><span class="line">    CEOs.push(companies[i].CEO);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//声明式</span></span><br><span class="line"><span class="keyword">var</span> CEOs = companies.map(<span class="function"><span class="params">c</span> =&gt;</span> c.CEO);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>我们可以看到声明式的写法是一个表达式，无需关心如何进行计数器迭代，返回的数组如何收集，它指明的是做什么，而不是怎么做。<strong>函数式编程的一个明显的好处就是这种声明式的代码</strong> ,对于无副作用的纯函数，我们完全可以不考虑函数内部是如何实现的，专注于编写业务代码。</p>
+<h4 id="常见特性"><a href="#常见特性" class="headerlink" title="常见特性"></a>常见特性</h4><p><strong>无副作用</strong></p>
+<p>指调用函数时不会修改外部状态，即一个函数调用 n 次后依然返回同样的结果。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 含有副作用，它修改了外部变量 a</span></span><br><span class="line"><span class="comment">// 多次调用结果不一样</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  a++;</span><br><span class="line">  <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 无副作用，没有修改外部状态</span></span><br><span class="line"><span class="comment">// 多次调用结果一样</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>透明引用</strong></p>
+<p>指一个函数只会用到传递给它的变量以及自己内部创建的变量，不会使用到其他变量。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="comment">// 函数内部使用的变量并不属于它的作用域</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数内部使用的变量是显式传递进去的</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>不可变变量</strong></p>
+<p>指的是一个变量一旦创建后，就不能再进行修改，任何修改都会生成一个新的变量。使用不可变变量最大的好处是线程安全。多个线程可以同时访问同一个不可变变量，让并行变得更容易实现。 由于 JavaScript 原生不支持不可变变量，需要通过第三方库来实现。 (如 Immutable.js，Mori 等等)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = Immutable(&#123; <span class="attr">a</span>: <span class="number">1</span> &#125;);</span><br><span class="line"><span class="keyword">var</span> obj2 = obj.set(<span class="string">'a'</span>, <span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(obj);  <span class="comment">// Immutable(&#123; a: 1 &#125;)</span></span><br><span class="line"><span class="built_in">console</span>.log(obj2); <span class="comment">// Immutable(&#123; a: 2 &#125;)</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>函数是一等公民</strong></p>
+<p>我们常说函数是JavaScript的”第一等公民”，指的是函数与其他数据类型一样，处于平等地位，可以赋值给其他变量，也可以作为参数，传入另一个函数，或者作为别的函数的返回值。下文将要介绍的闭包、高阶函数、函数柯里化和函数组合都是围绕这一特性的应用</p>
+<h4 id="常见的函数式编程模型"><a href="#常见的函数式编程模型" class="headerlink" title="常见的函数式编程模型"></a>常见的函数式编程模型</h4><ol>
+<li><p>闭包（Closure）<br>闭包的形成条件：</p>
+<ul>
+<li>存在内、外两层函数</li>
+<li>内层函数对外层函数的局部变量进行了引用</li>
+</ul>
+<p>闭包的用途:</p>
+<ul>
+<li><p><strong>可以定义一些作用域局限的持久化变量，这些变量可以用来做缓存或者计算的中间量等。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 简单的缓存工具</span></span><br><span class="line"><span class="comment">// 匿名函数创造了一个闭包</span></span><br><span class="line"><span class="keyword">const</span> cache = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> store = &#123;&#125;;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="keyword">get</span>(key) &#123;</span><br><span class="line">      <span class="keyword">return</span> store[key];</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span>(key, val) &#123;</span><br><span class="line">      store[key] = val;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;());</span><br><span class="line"><span class="built_in">console</span>.log(cache) <span class="comment">//&#123;get: ƒ, set: ƒ&#125;</span></span><br><span class="line">cache.set(<span class="string">'a'</span>, <span class="number">1</span>);</span><br><span class="line">cache.get(<span class="string">'a'</span>);  <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>一个简单的缓存工具的实现，匿名函数创造了一个闭包，使得 store 对象 ，一直可以被引用，不会被回收。</p>
+<p>闭包的弊端:<br>持久化变量不会被正常释放，持续占用内存空间，很容易造成内存浪费，所以一般需要一些额外手动的清理机制。</p>
+</li>
+</ul>
+</li>
+<li><p>高阶函数<br>函数式编程倾向于复用一组通用的函数功能来处理数据，它通过使用高阶函数来实现。<strong>高阶函数指的是一个函数以函数为参数，或以函数为返回值，或者既以函数为参数又以函数为返回值。</strong><br>高阶函数经常用于：</p>
+<ul>
+<li>抽象或隔离行为、作用，异步控制流程作为回调函数，promises，monads等</li>
+<li>创建可以泛用于各种数据类型的功能</li>
+<li>部分应用于函数参数（偏函数应用）或创建一个柯里化的函数，用于复用或函数复合。</li>
+<li><p>接受一个函数列表并返回一些由这个列表中的函数组成的复合函数。</p>
+<p>JavaScript 语言是原生支持高阶函数的, 例如Array.prototype.map，Array.prototype.filter 和 Array.prototype.reduce 是JavaScript中内置的一些高阶函数，使用高阶函数会让我们的代码更清晰简洁。</p>
+</li>
+</ul>
+</li>
+<li><p>函数柯里化<br>柯里化又称部分求值，柯里化函数会接收一些参数，然后不会立即求值，而是继续返回一个新函数，将传入的参数通过闭包的形式保存，等到被真正求值的时候，再一次性把所有传入的参数进行求值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 普通函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line">add(<span class="number">1</span>,<span class="number">2</span>); <span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 函数柯里化</span></span><br><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> increment = add(<span class="number">1</span>);</span><br><span class="line">increment(<span class="number">2</span>);<span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curryIt</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 参数fn函数的参数个数</span></span><br><span class="line">  <span class="keyword">var</span> n = fn.length;</span><br><span class="line">  <span class="keyword">var</span> args = [];</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">    args.push(arg);</span><br><span class="line">    <span class="keyword">if</span> (args.length &lt; n) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">arguments</span>.callee; <span class="comment">// 返回这个函数的引用</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>, args);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [a, b, c];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> c = curryIt(add);</span><br><span class="line"><span class="keyword">var</span> c1 = c(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">var</span> c2 = c1(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">var</span> c3 = c2(<span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(c3); <span class="comment">//[1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<p>柯里化是一种“预加载”函数的方法，通过传递较少的参数，得到一个已经记住了这些参数的新函数，某种意义上讲，这是一种对参数的“缓存”，是一种非常高效的编写函数的方法</p>
+</li>
+<li><p>函数组合 (Composition)<br>假设有一个 compose 函数，它可以接受多个函数作为参数，然后返回一个新的函数。当我们为这个新函数传递参数时，该参数就会「流」过其中的函数，最后返回结果。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//两个函数的组合</span></span><br><span class="line"><span class="keyword">var</span> compose = <span class="function"><span class="keyword">function</span>(<span class="params">f, g</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> f(g(x));</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="keyword">var</span> compose = <span class="function">(<span class="params">f, g</span>) =&gt;</span> (<span class="function"><span class="params">x</span> =&gt;</span> f(g(x)));</span><br><span class="line"><span class="keyword">var</span> add1 = <span class="function"><span class="params">x</span> =&gt;</span> x + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> mul5 = <span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">5</span>;</span><br><span class="line">compose(mul5, add1)(<span class="number">2</span>);<span class="comment">// =&gt;15</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</script></li></ul>
       
     </div>
 
@@ -1391,6 +1603,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/12/前端基础汇总3/" rel="prev" title="前端基础知识汇总（ES6）">
+                前端基础知识汇总（ES6） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -1459,7 +1675,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
